@@ -5,4 +5,6 @@ package by.trapecia.dao;
  */
 public interface StatisticDao {
     Integer totalPeoples() throws Exception;
+    Integer allMen() throws Exception;
+    Integer allWomen() throws Exception;
 }

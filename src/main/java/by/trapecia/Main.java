@@ -235,6 +235,10 @@ public class Main {
         get("/StatisticController", (request, response) -> {
             JSONObject obj = new JSONObject();
             obj.put("totalPeoples", statisticDao.totalPeoples());
+            JSONObject gender = new JSONObject();
+            gender.put("allMen", statisticDao.allMen());
+            gender.put("allWomen", statisticDao.allWomen());
+            obj.put("gender", gender);
             response.status(200);
             response.type("application/json");
             response.body(obj.toString());

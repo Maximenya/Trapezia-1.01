@@ -55,4 +55,66 @@ public class StatisticDaoImpl implements StatisticDao {
             return totalPeoples;
         }
 
+    @Override
+    public Integer allMen() throws Exception {
+        Integer allMen = null;
+        ArrayList<Client> clients = new ArrayList<Client>();
+        Connection connection = null;
+        Statement st = null;
+        ResultSet result;
+        try {
+            connection = cp.getConnection();
+            String selectStatement = "SELECT * FROM client WHERE sex = 'М'";
+            PreparedStatement ps = connection.prepareStatement(selectStatement);
+            result = ps.executeQuery();
+            while (result.next()) {
+                Client client = new Client();
+                clients.add(client);
+            }
+            result.close();
+            allMen = clients.size();
+
+        } catch (Exception e) {
+            log.log(Level.SEVERE, "Exception: ", e);
+        }   finally {
+            try {
+                ConnectionPool.getInstance().returnConnection(connection);
+            } catch (Exception e) {
+                log.log(Level.SEVERE, "Exception: ", e);
+            }
+        }
+        return allMen;
+    }
+
+    @Override
+    public Integer allWomen() throws Exception {
+        Integer allWomen = null;
+        ArrayList<Client> clients = new ArrayList<Client>();
+        Connection connection = null;
+        Statement st = null;
+        ResultSet result;
+        try {
+            connection = cp.getConnection();
+            String selectStatement = "SELECT * FROM client WHERE sex = 'Ж'";
+            PreparedStatement ps = connection.prepareStatement(selectStatement);
+            result = ps.executeQuery();
+            while (result.next()) {
+                Client client = new Client();
+                clients.add(client);
+            }
+            result.close();
+            allWomen = clients.size();
+
+        } catch (Exception e) {
+            log.log(Level.SEVERE, "Exception: ", e);
+        }   finally {
+            try {
+                ConnectionPool.getInstance().returnConnection(connection);
+            } catch (Exception e) {
+                log.log(Level.SEVERE, "Exception: ", e);
+            }
+        }
+        return allWomen;
+    }
+
 }
