@@ -1,0 +1,232 @@
+body	{
+    font-family: "PT Sans", sans-serif;
+    font-size: 18px;
+    background: fixed #ddd url(img/fon2.jpg) no-repeat;
+    background-size: cover;
+    color: #6B6B69;
+}
+
+#all {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 7px;
+    padding: 20px 40px 20px 40px;
+    width: 950px;
+    margin: 0px auto;
+}
+
+#contain {
+    background: #f7f7f5 url(img/color-logo1.jpg) no-repeat 95% 95%;
+    border-radius: 5px;
+    padding: 40px 40px 60px;
+    margin: auto;
+    width: 850px;
+}
+
+#caption {
+    margin: -30px auto -10px auto;
+    width: 850px;
+    padding: 0px 40px;
+    border-radius: 5px;
+    background: #FBED6A url(img/logo.png) no-repeat 5% 55%;
+}
+#caption_text {
+    text-align: center;
+    color: black;
+    font-size: 26px;
+    font-family: helvetica, arial, serif;
+    padding: 10px 0px;
+}
+#link {
+    position: absolute;
+    margin: 5px 0px 0px -30px;
+    background-color: rgba(255, 255, 255, 0);
+    width: 300px;
+    height: 40px;
+}
+
+.yellowline {
+    width: 600px;
+    height: 4px;
+    border-radius: 40px;
+    background-color: #DFDFE0;
+    margin: 20px auto;
+}
+
+#table {
+    margin: auto;
+}
+
+#subfield {
+    text-align: center;
+}
+
+#table2 {
+    margin: auto;
+}
+#table2 td {
+    padding: 10px;
+}
+#table2 td:nth-child(6), td:nth-child(12), td:nth-child(18) {
+    width: 40px;
+}
+.ser {
+    width: 463px;
+}
+.ser:hover {
+    background: rgb(248, 255, 255);
+}
+.inf {
+    width: 47px;
+}
+.inf:hover {
+    background: rgb(248, 255, 255);
+}
+#buyAbon {
+	border: none;
+    text-shadow: 1px 1px 2px #000;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 20px;
+    width: 250px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #FBE94F;
+    font-weight: 700;
+    font-family: "Noto Serif", sans-serif;
+    color: #fff;
+}
+#buyAbon:hover	{
+    background-color: rgb(255, 255, 0);
+}
+#pro {
+    border: none;
+    text-shadow: 1px 1px 2px #000;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 20px;
+    width: 150px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #FBE94F;
+    font-weight: 700;
+    font-family: "Noto Serif", sans-serif;
+    color: #fff;
+}
+#pro:hover	{
+    background-color: rgb(255, 255, 0);
+}
+#ton {
+    border: none;
+    text-shadow: 1px 1px 2px #000;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 20px;
+    width: 250px;
+    margin-top: 35px;
+    margin-left: 190px;
+    background-color: #FBE94F;
+    font-weight: 700;
+    font-family: "Noto Serif", sans-serif;
+    color: #fff;
+}
+#ton:hover	{
+    background-color: rgb(255, 255, 0);
+}
+
+/*НОВОЕ ОКНО*/
+
+#new_field {
+    background-color: rgba(50, 50, 50, 0.7);
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    z-index: 666;
+    width: 100%;
+    height: 120%;
+}
+#new_field2 {
+    background: #f7f7f5;
+    border-radius: 5px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    z-index: 777;
+    width: 600px;
+    height: 450px;
+}
+#exit {
+    background: #f7f7f5;
+    border: none;
+    width: 28px;
+    height: 28px;
+    padding: 1px;
+    border-radius: 5px;
+}
+#purchAbon {
+    width: 200px;
+    padding: 30px 30px;
+    margin:  auto;
+    background: rgb(223, 223, 224);
+    border-radius: 5px;
+}
+caption {
+    margin: 0px 0px 15px 0px;
+    width: auto;
+    padding: 5px 0px;
+    border-radius: 5px;
+    background: #FBED6A;
+    font-size: 24px;
+    font-family: helvetica, arial, serif;
+    color: black;
+}
+#purchAbon td  {
+    padding: 5px;
+}
+#abonSubscrNW {
+    width: 260px;
+    height: 30px;
+    border-radius: 5px;
+    border: thin solid lightgray;
+    background-color: #fff;
+}
+#validity:hover  {
+    background: rgb(248, 255, 255);
+}
+#abonSubscrNW:hover {
+    background: rgb(248, 255, 255);
+}
+#validity {
+    width: 250px;
+    height: 20px;
+    padding: 5px;
+    border-radius: 5px;
+    border: thin solid lightgray;
+    background-color: #fff;
+}
+#purchase {
+    border: none;
+    text-shadow: 1px 1px 2px #000;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 20px;
+    width: 180px;
+    background-color: #FBE94F;
+    font-weight: 700;
+    font-family: "Noto Serif", sans-serif;
+    color: #fff;
+    margin: 30px 0px 10px 150px;
+}
+#purchase:hover {
+    background-color: rgb(255, 255, 0);
+}
+.hidden {
+    display: none;
+}
+#errorMessage {
+    height: 21px;
+    color: #CD5555;
+    text-align: center;
+}

@@ -1,0 +1,115 @@
+body {
+    font-family: "PT Sans", sans-serif;
+    font-size: 18px;
+    background: fixed #ddd url(img/fon2.jpg) no-repeat;
+    background-size: cover;
+    color: #6B6B69;
+}
+
+#all {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 7px;
+    padding: 20px 40px 20px 40px;
+    width: 950px;
+    margin: auto;
+}
+
+#contain {
+    background: #f7f7f5 url(img/color-logo1.jpg) no-repeat 5% 95%;
+    border-radius: 5px;
+    padding: 0px 40px 60px;
+    margin: auto;
+    width: 850px;
+}
+
+#caption {
+    margin: -30px auto -10px auto;
+    width: 850px;
+    padding: 0px 40px;
+    border-radius: 5px;
+    background: #FBED6A url(img/logo.png) no-repeat 5% 55%;
+}
+#caption_text {
+    text-align: center;
+    color: black;
+    font-size: 26px;
+    font-family: helvetica, arial, serif;
+    padding: 10px 0px;
+}
+#link {
+    position: absolute;
+    margin: 5px 0px 0px -30px ;
+    background-color: rgba(255, 255, 255, 0);
+    width: 300px;
+    height: 40px;
+}
+
+#table {
+    margin: auto;
+}
+
+#table td {
+    padding-bottom: 15px;
+}
+
+#but {
+    border: none;
+    text-shadow: 1px 1px 2px #000;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 20px;
+    width: 250px;
+    margin-top: 15px;
+    margin-left: 170px;
+    background-color: #FBE94F;
+    font-weight: 700;
+    font-family: "Noto Serif", sans-serif;
+    color: #fff;
+}
+#but:hover {
+    background-color: rgb(255, 255, 0);
+}
+
+#pro {
+    border: none;
+    text-shadow: 1px 1px 2px #000;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 20px;
+    width: 350px;
+    margin-top: 10px;
+    margin-left: 170px;
+    background-color: #FBE94F;
+    font-weight: 700;
+    font-family: "Noto Serif", sans-serif;
+    color: #fff;
+}
+#pro:hover {
+    background-color: rgb(255, 255, 0);
+}
+
+.one {
+    width: 230px;
+    height: 20px;
+    border-radius: 5px;
+    border: thin solid lightgray;
+    background-color: #fff;
+}
+.one:hover {
+    background: rgb(248, 255, 255);
+}
+
+.valid {
+    border: thin solid green;
+}
+.no_valid {
+    border: thin solid red;
+}
+#invalid {
+    text-align: center;
+    height: 21px;
+    color: #CD5555;
+}
+input:focus {
+    outline: none;
+}
