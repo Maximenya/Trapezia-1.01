@@ -239,6 +239,7 @@ public class Main {
             gender.put("allMen", statisticDao.allMen());
             gender.put("allWomen", statisticDao.allWomen());
             obj.put("gender", gender);
+            obj.put("genderAge", statisticDao.genderAge());
             response.status(200);
             response.type("application/json");
             response.body(obj.toString());
