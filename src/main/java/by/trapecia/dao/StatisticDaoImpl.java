@@ -215,4 +215,67 @@ public class StatisticDaoImpl implements StatisticDao {
         return genderAge;
     }
 
+    @Override
+    public JSONObject knowFrom() throws Exception {
+
+        JSONObject knowFrom = new JSONObject();
+        Connection connection = null;
+        Statement st = null;
+        ResultSet result;
+        try {
+            connection = cp.getConnection();
+            String selectStatement = "SELECT know_from, COUNT(*) AS `num` FROM client GROUP BY know_from";
+            PreparedStatement ps = connection.prepareStatement(selectStatement);
+            result = ps.executeQuery();
+            while (result.next()) {
+                knowFrom.put(result.getString("know_from"),result.getString("num"));
+            }
+
+            result.close();
+
+        } catch (Exception e) {
+            log.log(Level.SEVERE, "Exception: ", e);
+        }   finally {
+            try {
+                ConnectionPool.getInstance().returnConnection(connection);
+            } catch (Exception e) {
+                log.log(Level.SEVERE, "Exception: ", e);
+            }
+        }
+        return knowFrom;
+    }
+
+    @Override
+    public JSONObject regMonth() throws Exception {
+
+        JSONObject regMonth = new JSONObject();
+        Connection connection = null;
+        Statement st = null;
+        ResultSet result;
+        try {
+            connection = cp.getConnection();
+            String selectStatement = "SELECT MONTH(registration_date) AS Month, YEAR(registration_date) AS Year, COUNT(*) AS `num` \n" +
+                    "FROM client\n" +
+                    "WHERE registration_date LIKE '2%'\n" +
+                    "GROUP BY MONTH(registration_date) + '.' + YEAR(registration_date)";
+            PreparedStatement ps = connection.prepareStatement(selectStatement);
+            result = ps.executeQuery();
+            while (result.next()) {
+                regMonth.put(result.getString("Year") +'-'+ result.getString("Month"),result.getString("num"));
+            }
+
+            result.close();
+
+        } catch (Exception e) {
+            log.log(Level.SEVERE, "Exception: ", e);
+        }   finally {
+            try {
+                ConnectionPool.getInstance().returnConnection(connection);
+            } catch (Exception e) {
+                log.log(Level.SEVERE, "Exception: ", e);
+            }
+        }
+        return regMonth;
+    }
+
 }

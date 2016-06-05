@@ -240,6 +240,8 @@ public class Main {
             gender.put("allWomen", statisticDao.allWomen());
             obj.put("gender", gender);
             obj.put("genderAge", statisticDao.genderAge());
+            obj.put("knowFrom", statisticDao.knowFrom());
+            obj.put("regMonth", statisticDao.regMonth());
             response.status(200);
             response.type("application/json");
             response.body(obj.toString());

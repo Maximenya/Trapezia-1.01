@@ -10,4 +10,6 @@ public interface StatisticDao {
     Integer allMen() throws Exception;
     Integer allWomen() throws Exception;
     JSONObject genderAge() throws Exception;
+    JSONObject knowFrom() throws Exception;
+    JSONObject regMonth() throws Exception;
 }
