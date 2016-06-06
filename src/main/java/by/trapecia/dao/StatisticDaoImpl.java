@@ -2,6 +2,7 @@ package by.trapecia.dao;
 
 import by.trapecia.Main;
 import by.trapecia.model.Client;
+import by.trapecia.model.Subscription;
 import org.json.JSONObject;
 
 import java.sql.Connection;
@@ -10,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
@@ -22,6 +22,8 @@ import java.util.logging.Logger;
  */
 public class StatisticDaoImpl implements StatisticDao {
 
+    SubscriptionDao subscriptionDao = new SubscriptionDaoImpl();
+
         private static Logger log = Logger.getLogger(Main.class.getName());
 
         public int clientId;
@@ -31,23 +33,23 @@ public class StatisticDaoImpl implements StatisticDao {
             cp = ConnectionPool.getInstance();
         }
         @Override
-        public Integer totalPeoples() throws Exception {
-            Integer totalPeoples = null;
-            ArrayList<Client> clients = new ArrayList<Client>();
+        public JSONObject totalPeoples() throws Exception {
+            JSONObject totalPeoples = new JSONObject();
+            int all = 0;
             Connection connection = null;
             Statement st = null;
             ResultSet result;
             try {
                 connection = cp.getConnection();
-                String selectStatement = "SELECT * FROM client";
+                String selectStatement = "SELECT sex, COUNT(*) AS 'num' FROM client group by sex";
                 PreparedStatement ps = connection.prepareStatement(selectStatement);
                 result = ps.executeQuery();
                 while (result.next()) {
-                    Client client = new Client();
-                    clients.add(client);
+                   totalPeoples.put(result.getString("sex"), result.getInt("num"));
+                    all+=result.getInt("num");
                 }
+                totalPeoples.put("all", all);
                 result.close();
-                totalPeoples = clients.size();
 
             } catch (Exception e) {
                 log.log(Level.SEVERE, "Exception: ", e);
@@ -60,68 +62,6 @@ public class StatisticDaoImpl implements StatisticDao {
             }
             return totalPeoples;
         }
-
-    @Override
-    public Integer allMen() throws Exception {
-        Integer allMen = null;
-        ArrayList<Client> clients = new ArrayList<Client>();
-        Connection connection = null;
-        Statement st = null;
-        ResultSet result;
-        try {
-            connection = cp.getConnection();
-            String selectStatement = "SELECT * FROM client WHERE sex = 'М'";
-            PreparedStatement ps = connection.prepareStatement(selectStatement);
-            result = ps.executeQuery();
-            while (result.next()) {
-                Client client = new Client();
-                clients.add(client);
-            }
-            result.close();
-            allMen = clients.size();
-
-        } catch (Exception e) {
-            log.log(Level.SEVERE, "Exception: ", e);
-        }   finally {
-            try {
-                ConnectionPool.getInstance().returnConnection(connection);
-            } catch (Exception e) {
-                log.log(Level.SEVERE, "Exception: ", e);
-            }
-        }
-        return allMen;
-    }
-
-    @Override
-    public Integer allWomen() throws Exception {
-        Integer allWomen = null;
-        ArrayList<Client> clients = new ArrayList<Client>();
-        Connection connection = null;
-        Statement st = null;
-        ResultSet result;
-        try {
-            connection = cp.getConnection();
-            String selectStatement = "SELECT * FROM client WHERE sex = 'Ж'";
-            PreparedStatement ps = connection.prepareStatement(selectStatement);
-            result = ps.executeQuery();
-            while (result.next()) {
-                Client client = new Client();
-                clients.add(client);
-            }
-            result.close();
-            allWomen = clients.size();
-
-        } catch (Exception e) {
-            log.log(Level.SEVERE, "Exception: ", e);
-        }   finally {
-            try {
-                ConnectionPool.getInstance().returnConnection(connection);
-            } catch (Exception e) {
-                log.log(Level.SEVERE, "Exception: ", e);
-            }
-        }
-        return allWomen;
-    }
 
     @Override
     public JSONObject genderAge() throws Exception {
@@ -276,6 +216,38 @@ public class StatisticDaoImpl implements StatisticDao {
             }
         }
         return regMonth;
+    }
+
+    @Override
+    public JSONObject popSubscr() throws Exception {
+        Subscription subscription = new Subscription();
+        JSONObject popSubscr = new JSONObject();
+        Connection connection = null;
+        Statement st = null;
+        ResultSet result;
+        try {
+            connection = cp.getConnection();
+            String selectStatement = "SELECT subscription_type, COUNT(*) AS `num` FROM subscription GROUP BY subscription_type";
+            PreparedStatement ps = connection.prepareStatement(selectStatement);
+            result = ps.executeQuery();
+            while (result.next()) {
+                subscription.type = result.getInt("subscription_type");
+                subscriptionDao.getFName(subscription);
+                popSubscr.put(subscription.fancyName,result.getString("num"));
+            }
+
+            result.close();
+
+        } catch (Exception e) {
+            log.log(Level.SEVERE, "Exception: ", e);
+        }   finally {
+            try {
+                ConnectionPool.getInstance().returnConnection(connection);
+            } catch (Exception e) {
+                log.log(Level.SEVERE, "Exception: ", e);
+            }
+        }
+        return popSubscr;
     }
 
 }

@@ -234,14 +234,18 @@ public class Main {
 
         get("/StatisticController", (request, response) -> {
             JSONObject obj = new JSONObject();
-            obj.put("totalPeoples", statisticDao.totalPeoples());
-            JSONObject gender = new JSONObject();
-            gender.put("allMen", statisticDao.allMen());
-            gender.put("allWomen", statisticDao.allWomen());
-            obj.put("gender", gender);
-            obj.put("genderAge", statisticDao.genderAge());
-            obj.put("knowFrom", statisticDao.knowFrom());
-            obj.put("regMonth", statisticDao.regMonth());
+            JSONObject client = new JSONObject();
+            JSONObject subscription = new JSONObject();
+
+            client.put("totalPeoples", statisticDao.totalPeoples());
+            client.put("genderAge", statisticDao.genderAge());
+            client.put("knowFrom", statisticDao.knowFrom());
+            client.put("regMonth", statisticDao.regMonth());
+
+            subscription.put("popSubscr", statisticDao.popSubscr());
+
+            obj.put("client", client);
+            obj.put("subscription", subscription);
             response.status(200);
             response.type("application/json");
             response.body(obj.toString());
