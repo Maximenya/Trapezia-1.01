@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link type="text/css" rel="stylesheet" href="stylesheets/visit_style.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link type="text/css" rel="stylesheet" href="../../../public/stylesheets/visit_style.css">
+    <link rel="stylesheet" href="../../../public/stylesheets/shape.css">
+    <link rel="shortcut icon" href="stylesheets/img/favicon.ico" type="image/x-icon">
     <script src="scripts/codeVisit.js"></script>
 </head>
 <body>
@@ -36,26 +38,26 @@
     </table>
 </div>
 <!--ЗАКОНЧЕНО-->
-<div id="all">
-    <div id="caption">
-    	<a href="/climbingList" id="link"></a>
-    	<p id="caption_text">Аренда</p>
+<div class="all">
+    <div class="caption">
+        <a href="/climbingList" id="link"></a>
+        <p class="caption_text">Аренда</p>
     </div>
-    <div id="contain">
+    <div class="contain">
         <div class="reg_form">
             <table id="table">
                 <tr>
                     <td>${client.firstName}</td>
                     <td>${client.lastName}</td>
-					<td id="clientId">${client.clientId?c}</td>
+                    <td id="clientId">${client.clientId?c}</td>
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <button id="buyAbon">Купить абонемент</button>                        
+                        <button id="buyAbon">Купить абонемент</button>
                     </td>
-					<td colspan="2">
-						<button id="pro" type="button"  onclick="window.location='/editUser?clientId=${client.clientId?c}'" >Профиль</button>
-					</td>
+                    <td colspan="2">
+                        <button id="pro" type="button"  onclick="window.location='/editUser?clientId=${client.clientId?c}'" >Профиль</button>
+                    </td>
                 </tr>
             </table>
         </div>
@@ -64,8 +66,8 @@
         <div id="subfield">
             <form id="subscriptionId">
                 <#list subscriptions as subscription>
-                    <input type="radio" name="buztype" value="${subscription.subscriptionId}"> ${subscription.fancyName} до ${subscription.lastDate}<br>
-                </#list>
+                <input type="radio" name="buztype" value="${subscription.subscriptionId}"> ${subscription.fancyName} до ${subscription.lastDate}<br>
+            </#list>
             </form>
         </div>
 
