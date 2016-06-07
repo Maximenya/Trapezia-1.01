@@ -14,6 +14,22 @@ body {
     margin: 0 auto;
 }
 
+.caption {
+    margin: -30px auto -10px auto;
+    width: 850px;
+    padding: 0 40px;
+    border-radius: 5px;
+    background: #FBED6A url(img/logo.png) no-repeat 5% 55%;
+}
+
+.caption_text {
+    text-align: center;
+    color: black;
+    font-size: 26px;
+    font-family: helvetica, arial, serif;
+    padding: 10px 0;
+}
+
 .contain {
     background: #f7f7f5 url(img/color-logo1.jpg) no-repeat 95% 95%;
     border-radius: 5px;
@@ -23,10 +39,3 @@ body {
     position: relative;
 }
 
-.caption {
-    margin: -30px auto -10px auto;
-    width: 850px;
-    padding: 0 40px;
-    border-radius: 5px;
-    background: #FBED6A url(img/logo.png) no-repeat 5% 55%;
-}
