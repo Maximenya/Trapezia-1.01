@@ -2,8 +2,10 @@
 <html>
 <head>
     <meta charset="UTF-8">
-<#--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
-    <link type="text/css" rel="stylesheet" href="stylesheets/climbingList.css">
+    <!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
+    <link type="text/css" rel="stylesheet" href="../../../public/stylesheets/visit_style.css">
+    <link rel="stylesheet" href="../../../public/stylesheets/shape.css">
+    <link rel="shortcut icon" href="stylesheets/img/favicon.ico" type="image/x-icon">
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <script src="scripts/autocompleter.js"></script>
@@ -12,24 +14,24 @@
 </head>
 
 <body>
-<div id="all">
-    <div id="caption">
-        <p id="caption_text">Главная</p>
+<div class="all">
+    <div class="caption">
+        <p class="caption_text">Главная</p>
     </div>
-    <div id="contain">
+    <div class="contain">
         <p id="main">Сейчас на скалодроме:</p>
         <div id="list">
             <table>
                 <tr>
                     <td>
-					<#list clients as client>
+                        <#list clients as client>
                         <a href="/exit?clientId=${client.clientId?c}">${client.firstName} ${client.lastName}</a><br>
-					</#list>
+                    </#list>
                     </td>
                 </tr>
             </table>
         </div>
-<div>Всего ${count}</div>
+        <div  id="sum">Всего ${count}</div>
         <div class="search-container">
             <div class="ui-widget">
                 <input type="text" id="search" name="search" class="search" placeholder="Введите ФИО"/>
