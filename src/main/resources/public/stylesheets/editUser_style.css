@@ -6,16 +6,15 @@
     height: 40px;
 }
 
-.table {
-    display: table;
+.subcontain {
     margin: 0 auto;
+    text-align: center;
 }
-.row {
-    display: table-row;
-}
+
 label, input {
     display: table-cell;
     padding-right: 30px;
+    text-align: left;
 }
 
 /*правила для input, включая те, что внесены в shape.css не работают*/
@@ -25,7 +24,7 @@ label, input {
 }
 
 .grayline {
-    width: 600px;
+    width: 70%;
     margin: 20px auto;
 }
 
@@ -40,9 +39,8 @@ label, input {
     border: thin solid lightgray;
     background-color: #fff;
 }
-.central {
-    margin: 0 auto;
-}
+
+
 /*#link {
     position: absolute;
     margin: 5px 0 0 -30px ;

@@ -44,6 +44,14 @@ body {
     min-height: 500px;
 }
 
+.table {
+    display: table;
+    margin: 20px auto;
+}
+.row {
+    display: table-row;
+}
+
 .info {
     padding: 7px 15px;
     border-radius: 5px;
@@ -76,6 +84,7 @@ body {
     border-radius: 40px;
     background-color: #DFDFE0;
 }
+
 /*body {
     font-family: "PT Sans", sans-serif;
     font-size: 18px;
