@@ -2,7 +2,73 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link type="text/css" rel="stylesheet" href="../../../public/stylesheets/visit_style.css">
+    <link type="text/css" rel="stylesheet" href="../../../public/stylesheets/addUser_style.css">
+    <link rel="stylesheet" href="../../../public/stylesheets/shape.css">
+    <link rel="shortcut icon" href="../../../public/stylesheets/img/favicon.ico" type="image/x-icon">
+    <script src="scripts/codeAddUser.js"></script>
+</head>
+<body>
+<div class="all">
+    <div class="caption">
+        <a href="/climbingList" id="link"></a>
+        <p class="caption_text">Регистрация</p>
+    </div>
+    <div class="contain">
+        <form action="/addUser" method="post">
+            <p id="invalid"></p>
+            <div class="table">
+                <div class="row">
+                    <label for="lastName">Фамилия</label>
+                    <input type="text" class="info" id="lastName" name="lastName" autofocus>
+                </div>
+                <div class="row">
+                    <label for="firstName">Имя</label>
+                    <input type="text" class="info" id="firstName" name="firstName">
+                </div>
+                <div class="row">
+                    <label for="middleName">Отчество</label>
+                    <input type="text" class="info" id="middleName" name="middleName">
+                </div>
+                <div class="row">
+                    <label for="phone">Телефон</label>
+                    <input type="tel" class="info" id="phone" name="phone" pattern="[+][0-9 ]+" value="+375 ">
+                </div>
+                <div class="row">
+                    <label for="eMail">E-mail</label>
+                    <input type="email" class="info" id="eMail" name="eMail">
+                </div>
+                <div class="row">
+                    <label for="document">Документ</label>
+                    <input type="text" class="info" id="document" name="document">
+                </div>
+                <div class="row">
+                    <label for="sex">Пол</label>
+                    <select class="info" id="sex" name="sex">
+                        <option value="м">Мужской</option>
+                        <option value="ж">Женский</option>
+                    </select>
+                </div>
+                <div class="row">
+                    <label for="birthDate">Дата рождения</label>
+                    <input type="date" class="info" id="birthDate" name="birthDate">
+                </div>
+                <div class="row">
+                    <label for="knowFrom">Узнали от</label>
+                    <input type="text" class="info" id="knowFrom" name="knowFrom" >
+                </div>
+            </div>
+            <button class="push" id="but" type="submit">Добавить</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+
+<!--<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link type="text/css" rel="stylesheet" href="../../../public/stylesheets/addUser_style.css">
     <link rel="stylesheet" href="../../../public/stylesheets/shape.css">
     <link rel="shortcut icon" href="stylesheets/img/favicon.ico" type="image/x-icon">
     <script src="scripts/codeAddUser.js"></script>
@@ -101,4 +167,4 @@
     </form>
 </div>
 </body>
-</html>
+</html>-->

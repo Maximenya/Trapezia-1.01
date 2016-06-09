@@ -61,70 +61,71 @@
                 </div>
             </div>
             <button id="but" class="push" type="submit">Применить</button>
-
             <button id="ton" class="push" type="button">Редактировать</button>
-
             <form action="/deleteClient?clientId=${client.clientId?c}" method="post">
                 <button id="but" class="push" type="submit">Удалить</button>
             </form>
         </form>
         <div class="grayline"></div>
         <form action="/editSubscription" method="post">
-            <#list subscriptions as subscription class="central">
-            <div class="table">
-                <div class="row">
-                    <label for="subscriptionId">ID</label>
-                    <input type="text" class="info" id="subscriptionId" name="subscriptionId" readonly  value="${subscription.subscriptionId?c}"/>
-                </div>
-                <div class="row">
-                    <label for="clientId">ID</label>
-                    <input type="text" class="info" id="clientId" name="clientId" readonly  value="${subscription.clientId?c}"/>
-                </div>
-                <div class="row">
-                    <label for="saleTime">Дата продажи</label>
-                    <input type="text" class="info" id="saleTime" name="saleTime" autofocus value="${subscription.saleTime}"/>
-                </div>
-                <div class="row">
-                    <label for="firstName">Дата начала</label>
-                    <input type="date" class="info" id="firstDate" name="firstDate" value="${subscription.firstDate}"/>
-                </div>
-                <div class="row">
-                    <label for="middleName">Дата окончания</label>
-                    <input type="date" class="info" id="lastDate" name="lastDate" value="${subscription.lastDate}" />
-                </div>
-                <div class="row">
-                    <label for="counter">Осталось посещений</label>
-                    <input type="text" class="info" id="counter" name="counter"  value="${subscription.counter}" />
-                </div>
-                <div class="row">
-                    <label for="type">Тип абонемента</label>
-                    <select name="type" class="ser info" id="type">
-                        <option value="${subscription.type}">${subscription.fancyName}</option>
-                        <option value="22">4 посещения в любое время, на месяц</option>
-                        <option value="21">Абонемент безлимитный 'дневной'</option>
-                        <option value="23">Абонемент безлимитный на месяц</option>
-                        <option value="24">Групповые занятия с тренером для взрослых 4 раза в месяц</option>
-                        <option value="25">Групповые детские занятия с тренером 1 раз в неделю</option>
-                        <option value="26">Групповые детские занятия с тренером 2 раз в неделю</option>
-                    </select>
-                </div>
-                <div class="row">
-                    <label for="current">Действителен</label>
-                    <select name="current" class="ser info" id="current">
-                        <option value="${subscription.current}">Да</option>
-                        <option value="0">Нет</option>
-                    </select>
-                </div>
+            <div class="subcontain">
+                <#list subscriptions as subscription>
+                    <div class="table">
+                        <div class="row">
+                            <label for="subscriptionId">ID</label>
+                            <input type="text" class="info" id="subscriptionId" name="subscriptionId" readonly  value="${subscription.subscriptionId?c}"/>
+                        </div>
+                        <div class="row">
+                            <label for="clientId">ID</label>
+                            <input type="text" class="info" id="clientId" name="clientId" readonly  value="${subscription.clientId?c}"/>
+                        </div>
+                        <div class="row">
+                            <label for="saleTime">Дата продажи</label>
+                            <input type="text" class="info" id="saleTime" name="saleTime" autofocus value="${subscription.saleTime}"/>
+                        </div>
+                        <div class="row">
+                            <label for="firstName">Дата начала</label>
+                            <input type="date" class="info" id="firstDate" name="firstDate" value="${subscription.firstDate}"/>
+                        </div>
+                        <div class="row">
+                            <label for="middleName">Дата окончания</label>
+                            <input type="date" class="info" id="lastDate" name="lastDate" value="${subscription.lastDate}" />
+                        </div>
+                        <div class="row">
+                            <label for="counter">Осталось посещений</label>
+                            <input type="text" class="info" id="counter" name="counter"  value="${subscription.counter}" />
+                        </div>
+                        <div class="row">
+                            <label for="type">Тип абонемента</label>
+                            <select name="type" class="ser info" id="type">
+                                <option value="${subscription.type}">${subscription.fancyName}</option>
+                                <option value="22">4 посещения в любое время, на месяц</option>
+                                <option value="21">Абонемент безлимитный 'дневной'</option>
+                                <option value="23">Абонемент безлимитный на месяц</option>
+                                <option value="24">Групповые занятия с тренером для взрослых 4 раза в месяц</option>
+                                <option value="25">Групповые детские занятия с тренером 1 раз в неделю</option>
+                                <option value="26">Групповые детские занятия с тренером 2 раз в неделю</option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <label for="current">Действителен</label>
+                            <select name="current" class="ser info" id="current">
+                                <option value="${subscription.current}">Да</option>
+                                <option value="0">Нет</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button id="but" class="push" type="submit">Применить</button>
+                    <button id="ton" class="push" type="button">Редактировать</button>
+                </#list>
             </div>
-            <button id="but" class="push" type="submit">Применить</button>
-
-            <button id="ton" class="push" type="button">Редактировать</button>
-        </#list>
-    </form>
-</div>
+        </form>
+    </div>
 </div>
 </body>
-        </html><!--<!DOCTYPE html>
+</html>
+
+<!--<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
