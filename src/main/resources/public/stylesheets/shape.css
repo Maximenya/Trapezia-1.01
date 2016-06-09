@@ -9,6 +9,84 @@ body {
 .all {
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 7px;
+    padding: 5px 20px 30px;
+    width: 80%;
+    margin: 0 auto;
+
+}
+
+.caption {
+    width: 90%;
+    margin: 0 auto;
+    padding: 0 40px;
+    border-radius: 5px;
+    background: #FBED6A url(img/logo.png) no-repeat 5% 55%;
+    box-sizing: border-box;
+
+}
+
+.caption_text {
+    text-align: center;
+    color: black;
+    font-size: 26px;
+    font-family: helvetica, arial, serif;
+    padding: 10px 0;
+}
+
+.contain {
+    background: #f7f7f5 url(img/color-logo1.jpg) no-repeat 95% 95%;
+    border-radius: 5px;
+    padding: 30px 40px 150px;
+    margin: 0 auto;
+    width: 90%;
+    position: relative;
+    box-sizing: border-box;
+    min-height: 500px;
+}
+
+.info {
+    padding: 7px 15px;
+    border-radius: 5px;
+    border: thin solid lightgray;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+.info:hover {
+    background: rgb(248, 255, 255);
+}
+
+.push {
+    border: none;
+    text-shadow: 1px 1px 2px #000;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 20px;
+    background-color: #FBE94F;
+    font-weight: 700;
+    font-family: "Noto Serif", sans-serif;
+    color: #fff;
+    display: block;
+}
+.push:hover {
+    background-color: rgb(255, 255, 0);
+}
+
+.grayline {
+    height: 4px;
+    border-radius: 40px;
+    background-color: #DFDFE0;
+}
+/*body {
+    font-family: "PT Sans", sans-serif;
+    font-size: 18px;
+    background: fixed #ddd url(img/fon2.jpg) no-repeat;
+    background-size: cover;
+    color: #6B6B69;
+}
+
+.all {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 7px;
     padding: 20px 40px 20px 40px;
     width: 950px;
     margin: 0 auto;
@@ -37,5 +115,6 @@ body {
     margin: auto;
     width: 850px;
     position: relative;
-}
+}*/
+
 
