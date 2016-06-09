@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link type="text/css" rel="stylesheet" href="../../../public/stylesheets/statistic.css">
-    <link rel="stylesheet" href="../../../public/stylesheets/shape.css">
-    <link rel="shortcut icon" href="../../../public/stylesheets/img/favicon.ico" type="image/x-icon">
-    <script src="scripts/codeStatistic.js"></script>
+    <link type="text/css" rel="stylesheet" href="stylesheets/statistic.css">
+    <link rel="stylesheet" href="stylesheets/shape.css">
+    <link rel="shortcut icon" href="stylesheets/img/favicon.ico" type="image/x-icon">
 </head>
 <body>
     <div class="all">
@@ -15,9 +14,12 @@
         </div>
         <div class="contain">
             <div class="graphics">
-
+                <div id="chart_div" style="width: 900px; height: 500px;"></div>
             </div>
         </div>
     </div>
+    <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="scripts/codeStatistic.js"></script>
 </body>
 </html>
