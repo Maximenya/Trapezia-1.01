@@ -6,6 +6,44 @@
     height: 40px;
 }
 
+label, input {
+    display: table-cell;
+    padding-right: 30px;
+}
+
+.info {
+    width: 100%;
+    margin: 0 0 15px 0;
+}
+
+.push {
+    width: 250px;
+    margin: 20px auto;
+}
+
+.valid {
+    border: thin solid green;
+}
+.no_valid {
+    border: thin solid red;
+}
+#invalid {
+    text-align: center;
+    height: 21px;
+    color: #CD5555;
+}
+input:focus {
+    outline: none;
+}
+
+/*#link {
+    position: absolute;
+    margin: 5px 0 0 -30px ;
+    background-color: rgba(255, 255, 255, 0);
+    width: 300px;
+    height: 40px;
+}
+
 #table {
     margin: auto;
 }
@@ -74,4 +112,4 @@
 }
 input:focus {
     outline: none;
-}
+}*/
