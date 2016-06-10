@@ -1,8 +1,5 @@
-.graphics {
-    padding: 20px;
+#chart_div {
+    width: 100%;
+    height: auto;
     margin: 0 auto;
-    width: 900px;
-    height: 500px;
 }
-
-/*����� ������*/
