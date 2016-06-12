@@ -1,3 +1,7 @@
+var obj = $.getJSON("StatisticController");
+
+console.log(obj);
+
 var client = {
     "client":
         {"regMonth":
@@ -36,8 +40,6 @@ for (key in client["client"]["regMonth"]) {
     curent.push(+client["client"]["regMonth"][key]);
     regMonth.push(curent);
 }
-
-console.log(regMonth);
 
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);

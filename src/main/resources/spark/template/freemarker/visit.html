@@ -2,12 +2,12 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link type="text/css" rel="stylesheet" href="../../../public/stylesheets/visit_style.css">
+    <!--<link type="text/css" rel="stylesheet" href="../../../public/stylesheets/visit_style.css">
     <link rel="stylesheet" href="../../../public/stylesheets/shape.css">
-    <link rel="shortcut icon" href="../../../public/stylesheets/img/favicon.ico" type="image/x-icon">
-    <!--<link type="text/css" rel="stylesheet" href="stylesheets/visit_style.css">
+    <link rel="shortcut icon" href="../../../public/stylesheets/img/favicon.ico" type="image/x-icon">-->
+    <link type="text/css" rel="stylesheet" href="stylesheets/visit_style.css">
     <link rel="stylesheet" href="stylesheets/shape.css">
-    <link rel="shortcut icon" href="stylesheets/img/favicon.ico" type="image/x-icon">-->
+    <link rel="shortcut icon" href="stylesheets/img/favicon.ico" type="image/x-icon">
 </head>
 <body>
 <!--НОВОЕ ОКНО-->
@@ -53,7 +53,7 @@
             <div class="table">
                 <div class="row">${client.firstName}</div>
                 <div class="row">${client.lastName}</div>
-                <div class="row">${client.clientId?c}</div>
+                <div class="row" id="clientId">${client.clientId?c}</div>
             </div>
             <button id="buyAbon" class="push">Купить абонемент</button>
             <button id="pro" class="push" type="button"
@@ -211,8 +211,8 @@
         <button id="ton" class="push" type="submit">Пришел</button>
     </div>
 </div>
-<script src="../../../public/scripts/codeVisit.js"></script>
-<!--<script src="scripts/codeVisit.js"></script>-->
+<!--<script src="../../../public/scripts/codeVisit.js"></script>-->
+<script src="scripts/codeVisit.js"></script>
 </body>
 </html>
 
