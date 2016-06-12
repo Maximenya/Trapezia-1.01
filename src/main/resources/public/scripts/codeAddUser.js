@@ -15,24 +15,24 @@ window.onload = function () {
 
     function invalidMessage (msg, element) {
         invalid.innerHTML = msg;
-        element.setAttribute("class", "no_valid one");
+        element.setAttribute("class", "no_valid info");
         return false;
     }
 
     function formValidator (obj) {
         if (obj.id === lastName.id || obj.id === firstName.id || obj.id === middleName.id) {
             if (!obj.value) {
-                obj.setAttribute("class", "one");
+                obj.setAttribute("class", "info");
                 if (obj.id === middleName.id) {
                     middleName.value = "-";
                     return true;
                 }
                 return false;
             } else if (obj.value.match(/[^a-zа-яё-]/ig)) {
-                obj.setAttribute("class", "no_valid one");
+                obj.setAttribute("class", "no_valid info");
                 return false;
             } else {
-                obj.setAttribute("class", "valid one");
+                obj.setAttribute("class", "valid info");
                 return true;
             }
         } else if (obj.id === phone.id) {
@@ -46,13 +46,13 @@ window.onload = function () {
 
     function validationAndVisualization () {
         if (!this.value) {
-            this.setAttribute("class", "one");
+            this.setAttribute("class", "info");
             return false;
         } else if (this.value.match(/[^a-zа-яё-]/ig)) {
-            this.setAttribute("class", "no_valid one");
+            this.setAttribute("class", "no_valid info");
             return false;
         } else {
-            this.setAttribute("class", "valid one");
+            this.setAttribute("class", "valid info");
             return true;
         }
     }
@@ -62,16 +62,16 @@ window.onload = function () {
     middleName.oninput = validationAndVisualization;
     birthDate.onchange = function () {
         if (/\d\d\d\d-\d\d-\d\d/.test(this.value)) {
-            this.setAttribute("class", "valid one");
+            this.setAttribute("class", "valid info");
         } else {
-            this.setAttribute("class", "no_valid one");
+            this.setAttribute("class", "no_valid info");
         }
     };
     phone.oninput = function () {
         if (!this.value.match(/[^\d+ ]/)) {
-            this.setAttribute("class", "valid one");
+            this.setAttribute("class", "valid info");
         } else {
-            this.setAttribute("class", "no_valid one");
+            this.setAttribute("class", "no_valid info");
         }
     };//Данный обработчик можно доработать чтобы он "помогал" при вводе и более четко контролировал процесс ввода
     button.onclick = function () {
@@ -97,7 +97,7 @@ window.onload = function () {
                 return false;
             }
             invalidMessage("Поля ввода имени и фамилии не заполнены", lastName);
-            firstName.setAttribute("class", "no_valid one");
+            firstName.setAttribute("class", "no_valid info");
             return false;
         }
     };

@@ -9,6 +9,7 @@
 label, input {
     display: table-cell;
     padding-right: 30px;
+
 }
 
 .info {
@@ -22,10 +23,12 @@ label, input {
 }
 
 .valid {
-    border: thin solid green;
+    border: thin solid green !important;
 }
+
+
 .no_valid {
-    border: thin solid red;
+    border: thin solid red !important;
 }
 #invalid {
     text-align: center;
