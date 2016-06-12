@@ -68,7 +68,7 @@ public class Main {
 
         get("/addUser", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
-            return new ModelAndView(attributes, "addUser.ftl");
+            return new ModelAndView(attributes, "addUser.html");
         }, new FreeMarkerEngine());
 
         post("/addUser", (request, response) -> {
@@ -98,7 +98,7 @@ public class Main {
                 Map<String, Object> attributes =  new HashMap<>();
                 attributes.put("client", client);
                 attributes.put("subscriptions", subscriptions);
-            return new FreeMarkerEngine().render(new ModelAndView(attributes, "visit.ftl"));
+            return new FreeMarkerEngine().render(new ModelAndView(attributes, "visit.html"));
         });
 
         post("/visit", (request, response) -> {
@@ -149,7 +149,7 @@ public class Main {
             Map<String, Object> attributes =  new HashMap<>();
             attributes.put("clients", clients);
             attributes.put("count", count);
-            return new FreeMarkerEngine().render(new ModelAndView(attributes, "climbingList.ftl"));
+            return new FreeMarkerEngine().render(new ModelAndView(attributes, "climbingList.html"));
         });
 
 
@@ -163,7 +163,7 @@ public class Main {
             attributes.put("client", client);
             attributes.put("rent", rent);
             attributes.put("service", service);
-            return new FreeMarkerEngine().render(new ModelAndView(attributes, "exit.ftl"));
+            return new FreeMarkerEngine().render(new ModelAndView(attributes, "exit.html"));
         });
 
         post("/exit", (request, response) -> {
@@ -180,7 +180,7 @@ public class Main {
             Map<String, Object> attributes =  new HashMap<>();
             attributes.put("client", client);
             attributes.put("subscriptions", subscriptions);
-            return new FreeMarkerEngine().render(new ModelAndView(attributes, "editUser.ftl"));
+            return new FreeMarkerEngine().render(new ModelAndView(attributes, "editUser.html"));
         });
 
         post("/editUser", (request, response) -> {
@@ -232,6 +232,11 @@ public class Main {
             return searchList;
         });
 
+        get("/GetStatisticController", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+            return new ModelAndView(attributes, "statistic.html");
+        }, new FreeMarkerEngine());
+
         get("/StatisticController", (request, response) -> {
             JSONObject obj = new JSONObject();
             JSONObject client = new JSONObject();
@@ -243,14 +248,17 @@ public class Main {
             client.put("regMonth", statisticDao.regMonth());
 
             subscription.put("popSubscr", statisticDao.popSubscr());
+         //   subscription.put("regSubscr", statisticDao.regSubscr());
 
             obj.put("client", client);
             obj.put("subscription", subscription);
             response.status(200);
             response.type("application/json");
             response.body(obj.toString());
-            return obj;
+            Map<String, Object> attributes = new HashMap<>();
+            return new FreeMarkerEngine().render(new ModelAndView(attributes, "statistic.html"));
         });
+
 
     }
 }
