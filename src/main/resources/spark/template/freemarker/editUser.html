@@ -2,9 +2,12 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link type="text/css" rel="stylesheet" href="stylesheets/editUser_style.css">
+    <link type="text/css" rel="stylesheet" href="../../../public/stylesheets/editUser_style.css">
+    <link rel="stylesheet" href="../../../public/stylesheets/shape.css" />
+    <link rel="shortcut icon" href="../../../public/stylesheets/img/favicon.ico" type="image/x-icon">
+    <!--<link type="text/css" rel="stylesheet" href="stylesheets/editUser_style.css">
     <link rel="stylesheet" href="stylesheets/shape.css" />
-    <link rel="shortcut icon" href="stylesheets/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="stylesheets/img/favicon.ico" type="image/x-icon">-->
 </head>
 <body>
 <div class="all">
@@ -61,10 +64,6 @@
                 </div>
             </div>
             <button id="but" class="push" type="submit">Применить</button>
-            <button id="ton" class="push" type="button">Редактировать</button>
-            <form action="/deleteClient?clientId=${client.clientId?c}" method="post">
-                <button id="but" class="push" type="submit">Удалить</button>
-            </form>
         </form>
         <div class="grayline"></div>
         <form action="/editSubscription" method="post">
@@ -116,12 +115,12 @@
                         </div>
                     </div>
                     <button id="but" class="push" type="submit">Применить</button>
-                    <button id="ton" class="push" type="button">Редактировать</button>
                 </#list>
             </div>
         </form>
     </div>
 </div>
+<!---->
 </body>
 </html>
 
