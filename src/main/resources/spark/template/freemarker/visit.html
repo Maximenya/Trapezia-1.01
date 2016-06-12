@@ -2,16 +2,16 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link type="text/css" rel="stylesheet" href="../../../public/stylesheets/visit_style.css">
-    <link rel="stylesheet" href="../../../public/stylesheets/shape.css">
-    <link rel="shortcut icon" href="../../../public/stylesheets/img/favicon.ico" type="image/x-icon">
+    <link type="text/css" rel="stylesheet" href="stylesheets/visit_style.css">
+    <link rel="stylesheet" href="stylesheets/shape.css">
+    <link rel="shortcut icon" href="stylesheets/img/favicon.ico" type="image/x-icon">
     <script src="scripts/codeVisit.js"></script>
 </head>
 <body>
 <!--НОВОЕ ОКНО-->
 <div id="new_field" class="hidden"></div>
 <div id="new_field2" class="hidden">
-    <button id="exit"><img src="../../../public/stylesheets/img/exit.png" alt="X" width="25px" height="25px"></button>
+    <button id="exit"><img src="stylesheets/img/exit.png" alt="X" width="25px" height="25px"></button>
     <table id="purchAbon">
         <caption>Покупка абонемента</caption>
         <tr>
@@ -33,7 +33,9 @@
             <td colspan="2"><p id="errorMessage"></p></td>
         </tr>
         <tr>
-            <td colspan="2"><button id="purchase" class="push">Купить</button></td>
+            <td colspan="2">
+                <button id="purchase" class="push">Купить</button>
+            </td>
         </tr>
     </table>
 </div>
@@ -41,6 +43,7 @@
 <div class="all">
     <div class="caption">
         <a href="/climbingList" id="link"></a>
+
         <p class="caption_text">Аренда</p>
     </div>
     <div class="contain">
@@ -51,13 +54,16 @@
                 <div class="row">${client.clientId?c}</div>
             </div>
             <button id="buyAbon" class="push">Купить абонемент</button>
-            <button id="pro" class="push" type="button"  onclick="window.location='/editUser?clientId=${client.clientId?c}'" >Профиль</button>
+            <button id="pro" class="push" type="button"
+                    onclick="window.location='/editUser?clientId=${client.clientId?c}'">Профиль
+            </button>
         </div>
         <div class="grayline"></div>
         <div class="subcontain">
             <form id="subscriptionId">
-                <#list subscriptions as subscription>
-                <input type="radio" name="buztype" value="${subscription.subscriptionId}"> ${subscription.fancyName} до ${subscription.lastDate}<br>
+            <#list subscriptions as subscription>
+                <input type="radio" name="buztype" value="${subscription.subscriptionId}"> ${subscription.fancyName}
+                до ${subscription.lastDate}<br>
             </#list>
             </form>
         </div>
