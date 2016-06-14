@@ -64,10 +64,12 @@
         <div class="grayline"></div>
         <div class="subcontain">
             <form id="subscriptionId">
-            <#list subscriptions as subscription>
-                <input type="radio" name="buztype" value="${subscription.subscriptionId}"> ${subscription.fancyName}
-                до ${subscription.lastDate}<br>
-            </#list>
+                <#list subscriptions as subscription>
+                    <label for="buztype">
+                        <input type="radio" name="buztype" id="buztype" value="${subscription.subscriptionId}"> ${subscription.fancyName}
+                        до ${subscription.lastDate}<br>
+                    </label>
+                </#list>
             </form>
         </div>
         <div class="grayline"></div>

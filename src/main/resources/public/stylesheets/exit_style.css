@@ -8,16 +8,14 @@
 
 .subcontain {
     margin: 0 auto;
+    width: 90%;
+    text-align: center;
 }
 
 input, label {
     display: table-cell;
     padding: 10px;
 }
-.table:first-of-type {
-    text-align: center;
-}
-
 .grayline {
     width: 70%;
     margin: 20px auto;
