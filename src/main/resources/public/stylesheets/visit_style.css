@@ -6,28 +6,27 @@
     height: 40px;
 }
 
+.subcontain {
+    margin: 0 auto;
+    width: 90%;
+    text-align: center;
+}
+
+.hidden {
+    visibility: visible;
+}
+
 .grayline {
     width: 70%;
     margin: 20px auto;
 }
 
-.table {
-    width: 50%;
-}
-.table:first-of-type {
-    text-align: center;
-}
-label, input {
-    display: table-cell;
-    padding-right: 30px;
-}
-
 .info {
-    width: 100%;
+    width: 30%;
     margin: 0 0 15px 0;
 }
-.table .info:not(.ser) {
-    width: 70px;
+.ser {
+    width: 85%;
 }
 
 .push {
@@ -35,9 +34,37 @@ label, input {
     width: 250px;
 }
 
-.subcontain {
+.reg_form > div {
     margin: 0 auto;
     text-align: center;
+}
+.reg_form > div > .push {
+    display: inline-block;
+    width: auto;
+    padding: 10px 20px;
+}
+
+.tableflex {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: stretch;
+    align-content: space-around;
+    min-width: 250px;
+    width: 60%;
+    margin: 0 auto;
+}
+.column {
+    width: 40%;
+    margin: 10px;
+    text-align: right;
+}
+.column:first-child {
+    width: 100%;
+}
+
+label {
+    float: left;
 }
 /*НОВОЕ ОКНО*/
 
@@ -76,7 +103,7 @@ label, input {
 #purchAbon {
     width: 90%;
     padding: 30px 30px;
-    margin: auto;
+    margin: 0 auto;
     background: rgb(223, 223, 224);
     border-radius: 5px;
 }

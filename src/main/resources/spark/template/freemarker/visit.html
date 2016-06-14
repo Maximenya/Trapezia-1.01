@@ -18,7 +18,7 @@
         <caption>Покупка абонемента</caption>
         <tr>
             <td><label for="abonSubscrNW">Абонемент</label></td>
-            <td><select name="subscription" id="abonSubscrNW" class="info">
+            <td><select name="subscription" id="abonSubscrNW" class="info ser">
                 <option value="22">4 посещения в любое время, на месяц</option>
                 <option value="21">Абонемент безлимитный 'дневной'</option>
                 <option value="23">Абонемент безлимитный на месяц</option>
@@ -29,7 +29,7 @@
         </tr>
         <tr>
             <td><label for="validity">Действительный с</label></td>
-            <td><input type="date" id="validity" class="info" name="validity"/></td>
+            <td><input type="date" id="validity" class="info ser" name="validity"/></td>
         </tr>
         <tr>
             <td colspan="2"><p id="errorMessage"></p></td>
@@ -45,20 +45,21 @@
 <div class="all">
     <div class="caption">
         <a href="/climbingList" id="link"></a>
-
         <p class="caption_text">Аренда</p>
     </div>
     <div class="contain">
         <div class="reg_form">
-            <div class="table">
-                <div class="row">${client.firstName}</div>
-                <div class="row">${client.lastName}</div>
-                <div class="row" id="clientId">${client.clientId?c}</div>
+            <div class="subcontain">
+                ${client.firstName}
+                ${client.lastName}
+                <span class="hidden">${client.clientId?c}</span>
             </div>
-            <button id="buyAbon" class="push">Купить абонемент</button>
-            <button id="pro" class="push" type="button"
-                    onclick="window.location='/editUser?clientId=${client.clientId?c}'">Профиль
-            </button>
+            <div>
+                <button id="buyAbon" class="push">Купить абонемент</button>
+                <button id="pro" class="push" type="button"
+                        onclick="window.location='/editUser?clientId=${client.clientId?c}'">Профиль
+                </button>
+            </div>
         </div>
         <div class="grayline"></div>
         <div class="subcontain">
@@ -70,8 +71,8 @@
             </form>
         </div>
         <div class="grayline"></div>
-        <div class="table">
-            <div class="row">
+        <div class="tableflex">
+            <div class="column">
                 <label for="service">Услуга</label>
                 <select name="service" class="ser info" id="service">
                     <option value="11">Разовое посещение до 16:00 понедельник-пятница</option>
@@ -84,7 +85,7 @@
                     <option value="16">Групповое занятие с тренером для взрослых</option>
                 </select>
             </div>
-            <div class="row">
+            <div class="column">
                 <label for="harness">Обвязка</label>
                 <select class="info" id="harness">
                     <option value="0">0</option>
@@ -105,7 +106,7 @@
                     <option value="15">15</option>
                 </select>
             </div>
-            <div class="row">
+            <div class="column">
                 <label for="griGri">gri-gri</label>
                 <select class="info" id="griGri">
                     <option value="0">0</option>
@@ -119,7 +120,7 @@
                     <option value="8">8</option>
                 </select>
             </div>
-            <div class="row">
+            <div class="column">
                 <label for="magnesia">Магнезия</label>
                 <select class="info" id="magnesia">
                     <option value="0">0</option>
@@ -133,7 +134,7 @@
                     <option value="8">8</option>
                 </select>
             </div>
-            <div class="row">
+            <div class="column">
                 <label for="carabine">Карабин</label>
                 <select class="info" id="carabine">
                     <option value="0">0</option>
@@ -147,7 +148,7 @@
                     <option value="8">8</option>
                 </select>
             </div>
-            <div class="row">
+            <div class="column">
                 <label for="climbingShoes">Скальные туфли</label>
                 <select class="info" id="climbingShoes">
                     <option value="0">0</option>
@@ -161,7 +162,7 @@
                     <option value="8">8</option>
                 </select>
             </div>
-            <div class="row">
+            <div class="column">
                 <label for="key">Ключ</label>
                 <select class="info" id="key">
                     <option value="0">0</option>
