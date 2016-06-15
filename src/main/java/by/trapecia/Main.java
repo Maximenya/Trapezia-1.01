@@ -248,15 +248,14 @@ public class Main {
             client.put("regMonth", statisticDao.regMonth());
 
             subscription.put("popSubscr", statisticDao.popSubscr());
-         //   subscription.put("regSubscr", statisticDao.regSubscr());
+           subscription.put("regSubscr", statisticDao.regSubscr());
 
             obj.put("client", client);
             obj.put("subscription", subscription);
             response.status(200);
             response.type("application/json");
             response.body(obj.toString());
-            Map<String, Object> attributes = new HashMap<>();
-            return new FreeMarkerEngine().render(new ModelAndView(attributes, "statistic.html"));
+            return obj;
         });
 
 

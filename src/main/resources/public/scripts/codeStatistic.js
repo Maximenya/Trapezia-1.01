@@ -1,6 +1,19 @@
-var obj = $.getJSON("StatisticController");
 
-console.log(obj);
+
+var xmlhttp = new XMLHttpRequest();
+var url = "StatisticController";
+
+xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        var myArr = JSON.parse(xmlhttp.responseText);
+        console.log(myArr);
+    }
+};
+
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+
+
 
 var client = {
     "client":

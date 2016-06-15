@@ -11,9 +11,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Objects;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,8 +30,8 @@ public class StatisticDaoImpl implements StatisticDao {
         public StatisticDaoImpl() throws Exception {
             cp = ConnectionPool.getInstance();
         }
-        @Override
-        public JSONObject totalPeoples() throws Exception {
+    @Override
+    public JSONObject totalPeoples() throws Exception {
             JSONObject totalPeoples = new JSONObject();
             int all = 0;
             Connection connection = null;
@@ -248,6 +246,72 @@ public class StatisticDaoImpl implements StatisticDao {
             }
         }
         return popSubscr;
+    }
+
+    @Override
+    public JSONObject regSubscr() throws Exception {
+
+        JSONObject regSubscr,T21,T22,T23,T24,T25,T26;
+        regSubscr = new JSONObject();
+        T21 = new JSONObject();
+        T22 = new JSONObject();
+        T23 = new JSONObject();
+        T24 = new JSONObject();
+        T25 = new JSONObject();
+        T26 = new JSONObject();
+
+        Connection connection = null;
+        Statement st = null;
+        ResultSet result;
+        try {
+            connection = cp.getConnection();
+            String selectStatement = "SELECT subscription_type as Type, MONTH(sale_time) AS Month, YEAR(sale_time) AS Year, COUNT(*) AS `num` \n" +
+                    "FROM subscription\n" +
+                    "WHERE sale_time LIKE '2%'\n" +
+                    "GROUP BY subscription_type, MONTH(sale_time) + '.' + YEAR(sale_time)";
+            PreparedStatement ps = connection.prepareStatement(selectStatement);
+            result = ps.executeQuery();
+            while (result.next()) {
+                switch (result.getInt("Type")){
+                    case 21:
+                        T21.put(result.getString("Year") +'-'+ result.getString("Month"),result.getString("num"));
+                        break;
+                    case 22:
+                        T22.put(result.getString("Year") +'-'+ result.getString("Month"),result.getString("num"));
+                        break;
+                    case 23:
+                        T23.put(result.getString("Year") +'-'+ result.getString("Month"),result.getString("num"));
+                        break;
+                    case 24:
+                        T24.put(result.getString("Year") +'-'+ result.getString("Month"),result.getString("num"));
+                        break;
+                    case 25:
+                        T25.put(result.getString("Year") +'-'+ result.getString("Month"),result.getString("num"));
+                        break;
+                    case 26:
+                        T26.put(result.getString("Year") +'-'+ result.getString("Month"),result.getString("num"));
+                        break;
+                }
+                regSubscr.put("21", T21);
+                regSubscr.put("22", T22);
+                regSubscr.put("23", T23);
+                regSubscr.put("24", T24);
+                regSubscr.put("25", T25);
+                regSubscr.put("26", T26);
+            }
+
+            result.close();
+
+        } catch (Exception e) {
+            log.log(Level.SEVERE, "Exception: ", e);
+        }   finally {
+            try {
+                ConnectionPool.getInstance().returnConnection(connection);
+            } catch (Exception e) {
+                log.log(Level.SEVERE, "Exception: ", e);
+            }
+        }
+        return regSubscr;
     }
 
 }
