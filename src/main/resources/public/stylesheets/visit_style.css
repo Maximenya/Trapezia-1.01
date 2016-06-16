@@ -63,9 +63,10 @@
     width: 100%;
 }
 
-label {
+.tableflex label {
     float: left;
 }
+
 /*НОВОЕ ОКНО*/
 
 #new_field {
