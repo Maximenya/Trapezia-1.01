@@ -67,6 +67,20 @@
     float: left;
 }
 
+#subscriptionId input[type=radio] {
+    display: none;
+}
+#subscriptionId label{
+    display: block;
+    padding: 15px;
+    width: 60%;
+    margin: 0 auto;
+    transition: 1s;
+}
+#subscriptionId label:hover {
+    background: rgb(220, 227, 227);
+    border-radius: 15px;
+}
 /*НОВОЕ ОКНО*/
 
 #new_field {
