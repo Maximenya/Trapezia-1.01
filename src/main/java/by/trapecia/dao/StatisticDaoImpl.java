@@ -314,4 +314,36 @@ public class StatisticDaoImpl implements StatisticDao {
         return regSubscr;
     }
 
+    @Override
+    public JSONObject attendance() throws Exception {
+
+        JSONObject attendance = new JSONObject();
+        Connection connection = null;
+        Statement st = null;
+        ResultSet result;
+        try {
+            connection = cp.getConnection();
+            String selectStatement = "SELECT MONTH(sale_time) AS Month, YEAR(sale_time) AS Year, COUNT(*) AS `num` \n" +
+                    "FROM service WHERE sale_time LIKE '2%'\n" +
+                    "GROUP BY MONTH(sale_time) + '.' + YEAR(sale_time)";
+            PreparedStatement ps = connection.prepareStatement(selectStatement);
+            result = ps.executeQuery();
+            while (result.next()) {
+                attendance.put(result.getString("Year") +'-'+ result.getString("Month"),result.getString("num"));
+            }
+
+            result.close();
+
+        } catch (Exception e) {
+            log.log(Level.SEVERE, "Exception: ", e);
+        }   finally {
+            try {
+                ConnectionPool.getInstance().returnConnection(connection);
+            } catch (Exception e) {
+                log.log(Level.SEVERE, "Exception: ", e);
+            }
+        }
+        return attendance;
+    }
+
 }

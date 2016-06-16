@@ -12,4 +12,5 @@ public interface StatisticDao {
     JSONObject regMonth() throws Exception;
     JSONObject popSubscr() throws Exception;
     JSONObject regSubscr() throws Exception;
+    JSONObject attendance() throws Exception;
 }
