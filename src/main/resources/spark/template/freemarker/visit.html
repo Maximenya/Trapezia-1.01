@@ -66,8 +66,8 @@
             <form id="subscriptionId">
                 <#list subscriptions as subscription>
                     <label for="buztype">
-                        <input type="radio" name="buztype" id="buztype" value="${subscription.subscriptionId}"> ${subscription.fancyName}
-                        до ${subscription.lastDate}<br>
+                        <input type="radio" name="buztype" id="buztype" value="${subscription.subscriptionId}"> <span>${subscription.fancyName}
+                        до ${subscription.lastDate}</span>
                     </label>
                 </#list>
             </form>
