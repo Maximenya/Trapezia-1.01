@@ -70,19 +70,19 @@
 #subscriptionId input[type=radio] {
     display: none;
 }
-#subscriptionId span{
+#subscriptionId label{
     display: block;
     padding: 15px;
     width: 60%;
     margin: 0 auto;
-    transition: 1s;
+    transition: background 0.5s;
     border-radius: 15px;
 }
-#subscriptionId span:hover {
+#subscriptionId label:hover {
     background: rgb(220, 227, 227);
 }
-#subscriptionId input[type=radio]:checked + span{
-    background: rgb(255, 255, 0);
+#subscriptionId input[type=radio]:checked ~ label[for="buztype"]{
+    background: rgb(190, 255, 196);
 }
 /*НОВОЕ ОКНО*/
 
