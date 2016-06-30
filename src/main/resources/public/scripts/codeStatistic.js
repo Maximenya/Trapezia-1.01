@@ -1,4 +1,5 @@
 window.onload = function () {
+    google.charts.load('current', {'packages':['corechart']});
     var buttons  = document.getElementById("buttons");
 
     /*var request = new XMLHttpRequest();
@@ -20,6 +21,20 @@ window.onload = function () {
         if (target.tagName != "A") return;
         hideAndShowCharts(target.getAttribute("id"));
     };
+    window.onresize = function () {
+        var stringId = getIdOfShowedChart();
+        var height = getOffsetParameters('offsetHeight');
+        var width = getOffsetParameters('offsetWidth');
+        if (stringId == "chart_div_reg_month") {
+            showRegMonthChart(client, height, width);
+        } else if (stringId == "chart_div_total_people") {
+            showTotalPeopleChart(client, height, width);
+        } else if (stringId == "chart_div_pop_subscr") {
+            showPopSubscrChart(client, height, width);
+        } else if (stringId == "chart_div_gender_age") {
+            showGenderAgeChart(client, height, width);
+        }
+    }
 };
 
 var client = {
@@ -42,16 +57,17 @@ var client = {
     }
 };
 
-function showRegMonthChart(statisticArr) {
+function showRegMonthChart(statisticArr, height, width) {
     var regMonth = makeDataArr(statisticArr.client.regMonth);
     regMonth.unshift(['Дата', 'Количество зарегистрировавшихся']);
 
-    google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
         var data = google.visualization.arrayToDataTable(regMonth);
 
         var options = {
+            width: width,
+            height: height,
             title: 'Дата регистрации',
             hAxis: {title: 'Дата',  titleTextStyle: {color: '#333'}},
             vAxis: {minValue: 0}
@@ -103,7 +119,6 @@ function showTotalPeopleChart(statisticArr, height, width) {
 function showPopSubscrChart(statisticArr, height, width) {
     var popSubscr = makeDataArr(statisticArr.subscription.popSubscr);
     popSubscr.unshift(['', '']);
-    console.log(popSubscr);
 
     google.charts.setOnLoadCallback(drawBasic);
 
@@ -139,37 +154,79 @@ function showPopSubscrChart(statisticArr, height, width) {
     }
 }
 
+function showGenderAgeChart (statisticArr, height, width) {
+    var genderAgeArr = makeDataArrForGenderAge(statisticArr);
+
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable(genderAgeArr);
+
+        var options = {
+            chart: {
+                title: 'Пол и возраст клиентов'
+            },
+            bars: 'vertical',
+            vAxis: {format: 'decimal'},
+            height: height,
+            width: width,
+            colors: ['#2BA2E0', '#E05EB3']
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div_gender_age'));
+
+        chart.draw(data, options);
+    }
+}
+
 function hideAndShowCharts(stringId) {
     var height = getOffsetParameters('offsetHeight');
     var width = getOffsetParameters('offsetWidth');
     if (stringId == "regMonth") {
+        showRegMonthChart(client, height, width);
         $("#chart_div_total_people").hide(350);
         $("#chart_div_pop_subscr").hide(350);
+        $("#chart_div_gender_age").hide(350);
         $("#chart_div_reg_month").show(350);
     } else if (stringId == "totalPeople") {
         showTotalPeopleChart(client, height, width);
         $("#chart_div_reg_month").hide(350);
         $("#chart_div_pop_subscr").hide(350);
+        $("#chart_div_gender_age").hide(350);
         $("#chart_div_total_people").show(350);
     } else if (stringId == "popSubscr") {
         showPopSubscrChart(client, height, width);
         $("#chart_div_reg_month").hide(350);
         $("#chart_div_total_people").hide(350);
+        $("#chart_div_gender_age").hide(350);
         $("#chart_div_pop_subscr").show(350);
+    } else if (stringId == "genderAge") {
+        showGenderAgeChart(client, height, width);
+        $("#chart_div_reg_month").hide(350);
+        $("#chart_div_total_people").hide(350);
+        $("#chart_div_pop_subscr").hide(350);
+        $("#chart_div_gender_age").show(350);
     }
     //Необходимо доработать, когда будут все графики
 }
 
 function getOffsetParameters (parameter) {
-    var chartsDivs = [];
-    chartsDivs.push(document.getElementById("chart_div_reg_month"));
-    chartsDivs.push(document.getElementById("chart_div_total_people"));
-    chartsDivs.push(document.getElementById("chart_div_pop_subscr"));
+    var chartsDivs = getAllChartsDivs();
     for (var i = 0; i < chartsDivs.length; i++) {
         if (chartsDivs[i][parameter]) {
             return chartsDivs[i][parameter];
         }
     }
+}
+
+function getAllChartsDivs () {
+    var chartsDivs = [];
+    chartsDivs.push(document.getElementById("chart_div_reg_month"));
+    chartsDivs.push(document.getElementById("chart_div_total_people"));
+    chartsDivs.push(document.getElementById("chart_div_pop_subscr"));
+    chartsDivs.push(document.getElementById("chart_div_gender_age"));
+    return chartsDivs;
+    //сделать универсальной
 }
 
 function makeDataArr(statisticArr) {
@@ -183,6 +240,61 @@ function makeDataArr(statisticArr) {
         }
     }
     return dataArr;
+}
+
+function makeDataArrForGenderAge (statisticArr) {
+    //график строится некорректно - необходима сортировка данных.
+    var genderAge = statisticArr.client.genderAge,
+        manAge = {},
+        womenAge = {},
+        i = 1,
+        j = 1,
+        genderAgeArr = [
+            ['Age', 'Men', 'Women'],
+            ['<18'],
+            ['18 - 21'],
+            ['21-24'],
+            ['24-27'],
+            ['27-30'],
+            ['30-35'],
+            ['35-45'],
+            ['>45']];
+
+    for (var key in genderAge) {
+        if (genderAge.hasOwnProperty(key)) {
+            if (key.split('')[0] == "M") {
+                manAge[key] = genderAge[key];
+            } else {
+                womenAge[key] = genderAge[key];
+            }
+        }
+    }
+
+    for (key in manAge) {
+        if (manAge.hasOwnProperty(key)) {
+            genderAgeArr[i].push(+manAge[key]);
+            i++;
+        }
+    }
+
+    for (key in womenAge) {
+        if (womenAge.hasOwnProperty(key)) {
+            genderAgeArr[j].push(+womenAge[key]);
+            j++;
+        }
+    }
+
+    return genderAgeArr;
+}
+
+function getIdOfShowedChart () {
+    var chartsDivs = getAllChartsDivs();
+    for (var i = 0; i < chartsDivs.length; i++) {
+        if (chartsDivs[i].offsetHeight) {
+            console.log(chartsDivs[i].getAttribute("id"));
+            return chartsDivs[i].getAttribute("id");
+        }
+    }
 }
 
 showRegMonthChart(client);
