@@ -1,5 +1,5 @@
 window.onload = function () {
-    google.charts.load('current', {'packages':['corechart']});
+    google.charts.load('current', {'packages':['corechart', 'timeline']});
     var buttons  = document.getElementById("buttons");
 
     /*var request = new XMLHttpRequest();
@@ -33,6 +33,8 @@ window.onload = function () {
             showPopSubscrChart(client, height, width);
         } else if (stringId == "chart_div_gender_age") {
             showGenderAgeChart(client, height, width);
+        } else if (stringId == "chart_div_know_from") {
+            showKnowFromChart(client, height, width);
         }
     }
 };
@@ -59,6 +61,7 @@ var client = {
 
 function showRegMonthChart(statisticArr, height, width) {
     var regMonth = makeDataArr(statisticArr.client.regMonth);
+    regMonth.sort(compareElementsByName);
     regMonth.unshift(['Дата', 'Количество зарегистрировавшихся']);
 
     google.charts.setOnLoadCallback(drawChart);
@@ -80,6 +83,7 @@ function showRegMonthChart(statisticArr, height, width) {
 
 function showTotalPeopleChart(statisticArr, height, width) {
     var totalPeople = makeDataArr(statisticArr.client.totalPeoples);
+    totalPeople.sort(compareElementsByName);
     totalPeople.unshift(['', '']);
 
     google.charts.setOnLoadCallback(drawBasic);
@@ -118,20 +122,14 @@ function showTotalPeopleChart(statisticArr, height, width) {
 
 function showPopSubscrChart(statisticArr, height, width) {
     var popSubscr = makeDataArr(statisticArr.subscription.popSubscr);
+    popSubscr.sort(compareElementsByValue);
     popSubscr.unshift(['', '']);
 
     google.charts.setOnLoadCallback(drawBasic);
 
     function drawBasic() {
 
-        var data = google.visualization.arrayToDataTable(
-            popSubscr
-            /*[
-             ['', '', {role: "style"}],
-             ['Men', 175, '#7CD9FF'],
-             ['Women', 80, '#FF4BED'],
-             ['Total', 255, '#ffff00']
-             ]*/);
+        var data = google.visualization.arrayToDataTable(popSubscr);
 
         var options = {
             title: 'Популярность абонементов',
@@ -179,33 +177,65 @@ function showGenderAgeChart (statisticArr, height, width) {
     }
 }
 
+function showKnowFromChart (statisticArr, height, width) {
+    var knowFrom = makeDataArr(statisticArr.client.knowFrom);
+    for (var i = 0; i < knowFrom.length; i++) {
+        if (knowFrom[i][0] === "") {
+            knowFrom[i][0] = 'не указали';
+        }
+        knowFrom[i].reverse();
+        knowFrom[i].unshift("");
+    }
+    knowFrom.sort(compareElementsByValue);
+    knowFrom.unshift(['Источник информации', 'Количество', {role: 'annotation'}]);
+
+    google.charts.setOnLoadCallback(drawBasic);
+
+    function drawBasic() {
+
+        var data = google.visualization.arrayToDataTable(knowFrom);
+
+        var options = {
+            title: 'Популярность абонементов',
+            chartArea: {width: '50%'},
+            hAxis: {
+                title: 'Количество абонементов',
+                minValue: 0
+            },
+            vAxis: {
+                title: ''
+            },
+            width: width,
+            height: height,
+            legend: { position: "none" }
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div_know_from'));
+
+        chart.draw(data, options);
+    }
+}
+
 function hideAndShowCharts(stringId) {
     var height = getOffsetParameters('offsetHeight');
     var width = getOffsetParameters('offsetWidth');
+    var activeChartId = "#" + getIdOfShowedChart();
+    $(activeChartId).hide(350);
     if (stringId == "regMonth") {
         showRegMonthChart(client, height, width);
-        $("#chart_div_total_people").hide(350);
-        $("#chart_div_pop_subscr").hide(350);
-        $("#chart_div_gender_age").hide(350);
         $("#chart_div_reg_month").show(350);
     } else if (stringId == "totalPeople") {
         showTotalPeopleChart(client, height, width);
-        $("#chart_div_reg_month").hide(350);
-        $("#chart_div_pop_subscr").hide(350);
-        $("#chart_div_gender_age").hide(350);
         $("#chart_div_total_people").show(350);
     } else if (stringId == "popSubscr") {
         showPopSubscrChart(client, height, width);
-        $("#chart_div_reg_month").hide(350);
-        $("#chart_div_total_people").hide(350);
-        $("#chart_div_gender_age").hide(350);
         $("#chart_div_pop_subscr").show(350);
     } else if (stringId == "genderAge") {
         showGenderAgeChart(client, height, width);
-        $("#chart_div_reg_month").hide(350);
-        $("#chart_div_total_people").hide(350);
-        $("#chart_div_pop_subscr").hide(350);
         $("#chart_div_gender_age").show(350);
+    } else if (stringId == "knowFrom") {
+        showKnowFromChart(client, height, width);
+        $("#chart_div_know_from").show(350);
     }
     //Необходимо доработать, когда будут все графики
 }
@@ -225,6 +255,7 @@ function getAllChartsDivs () {
     chartsDivs.push(document.getElementById("chart_div_total_people"));
     chartsDivs.push(document.getElementById("chart_div_pop_subscr"));
     chartsDivs.push(document.getElementById("chart_div_gender_age"));
+    chartsDivs.push(document.getElementById("chart_div_know_from"));
     return chartsDivs;
     //сделать универсальной
 }
@@ -243,12 +274,9 @@ function makeDataArr(statisticArr) {
 }
 
 function makeDataArrForGenderAge (statisticArr) {
-    //график строится некорректно - необходима сортировка данных.
     var genderAge = statisticArr.client.genderAge,
-        manAge = {},
-        womenAge = {},
-        i = 1,
-        j = 1,
+        menAge = [],
+        womenAge = [],
         genderAgeArr = [
             ['Age', 'Men', 'Women'],
             ['<18'],
@@ -262,26 +290,23 @@ function makeDataArrForGenderAge (statisticArr) {
 
     for (var key in genderAge) {
         if (genderAge.hasOwnProperty(key)) {
+            var current = [];
+            current.push(key);
+            current.push(+genderAge[key]);
             if (key.split('')[0] == "M") {
-                manAge[key] = genderAge[key];
+                menAge.push(current);
             } else {
-                womenAge[key] = genderAge[key];
+                womenAge.push(current);
             }
         }
     }
 
-    for (key in manAge) {
-        if (manAge.hasOwnProperty(key)) {
-            genderAgeArr[i].push(+manAge[key]);
-            i++;
-        }
-    }
+    menAge.sort(compareElementsByName);
+    womenAge.sort(compareElementsByName);
 
-    for (key in womenAge) {
-        if (womenAge.hasOwnProperty(key)) {
-            genderAgeArr[j].push(+womenAge[key]);
-            j++;
-        }
+    for (var i = 0; i < menAge.length; i++) {
+        genderAgeArr[i + 1].push(menAge[i][1]);
+        genderAgeArr[i + 1].push(womenAge[i][1]);
     }
 
     return genderAgeArr;
@@ -291,10 +316,19 @@ function getIdOfShowedChart () {
     var chartsDivs = getAllChartsDivs();
     for (var i = 0; i < chartsDivs.length; i++) {
         if (chartsDivs[i].offsetHeight) {
-            console.log(chartsDivs[i].getAttribute("id"));
             return chartsDivs[i].getAttribute("id");
         }
     }
+}
+
+function compareElementsByName (a, b) {
+    if (a[0] > b[0]) return 1;
+    if (a[0] < b[0]) return -1;
+}
+
+function compareElementsByValue (a, b) {
+    if (a[1] > b[1]) return -1;
+    if (a[1] < b[1]) return 1;
 }
 
 showRegMonthChart(client);
