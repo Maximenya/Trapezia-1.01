@@ -92,7 +92,7 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
                     ps2 = connection.prepareStatement(
                             "UPDATE subscription SET  current = ?" +
                                     " WHERE subscription_id = ?", Statement.RETURN_GENERATED_KEYS);
-                        ps2.setInt(1, (subscription.current = 0));
+                        ps2.setInt(1, 0);
                     ps2.setInt(2, subscription.subscriptionId);
                     ps2.executeUpdate();
 
@@ -193,7 +193,7 @@ public class SubscriptionDaoImpl implements SubscriptionDao {
                     "UPDATE subscription SET  counter = ?, current = ?" +
                             " WHERE subscription_id = ?", Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, (subscription.counter - 1));
-            if (subscription.counter == 1){
+            if (subscription.counter <= 1){
                 ps.setInt(2, (subscription.current = 0));
             }
             else {
