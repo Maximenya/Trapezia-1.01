@@ -17,7 +17,7 @@ label, input {
     text-align: left;
 }
 
-/*правила для input, включая те, что внесены в shape.css не работают*/
+/*пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ input, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ shape.css пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ*/
 .info {
     width: 100%;
     margin: 0 0 15px 0;
@@ -31,13 +31,6 @@ label, input {
 .push {
     margin: 15px auto;
     width: 250px;
-}
-.info {
-    width: 230px;
-    height: 20px;
-    border-radius: 5px;
-    border: thin solid lightgray;
-    background-color: #fff;
 }
 
 
