@@ -1,7 +1,3 @@
-
-/**
- * Created by alex on 2.1.16.
- */
 window.onload = function () {
     var clientId = document.getElementById("clientId").innerHTML;
     var numOfIn = clientId.indexOf("$");
@@ -15,6 +11,7 @@ window.onload = function () {
     var climbingShoes = document.getElementById("climbingShoes");
     var key = document.getElementById("key");
     var button = document.getElementById("ton");
+    var abonLabel = document.getElementsByClassName("abonLabel");
 
     var buyButton = document.getElementById("buyAbon");
     var buyAbonForm = document.getElementById("new_field2");
@@ -38,6 +35,19 @@ window.onload = function () {
         hideForm.removeAttribute("class");
     }
 
+    subscriptionId.onclick = function (event) {
+        if (event.target.tagName == "INPUT") {
+            if (event.target.checked) {
+                service.disabled = true;
+            }
+        }
+        if (event.target.tagName != 'LABEL') return;
+        for (var i = 0; i < abonLabel.length; i++) {
+            abonLabel[i].classList.remove('checkedAbonRadio');
+        }
+        event.target.classList.add('checkedAbonRadio');
+    };
+
     function hideBuyForm () {
         buyAbonForm.setAttribute("class", "hidden");
         hideForm.setAttribute("class", "hidden");
@@ -58,7 +68,11 @@ window.onload = function () {
         request.open("POST", "/buySubscription", true);
         request.send(newAbonString);
             hideBuyForm();
-
+        setTimeout(function() {
+            console.log("begin");
+            location.reload(true);
+            console.log("end")
+        }, 500);
     };
 
     button.onclick = function () {

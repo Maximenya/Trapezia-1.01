@@ -81,7 +81,7 @@
 #subscriptionId label:hover {
     background: rgb(220, 227, 227);
 }
-#subscriptionId input[type=radio]:checked ~ label[for="buztype"]{
+.checkedAbonRadio{
     background: rgb(190, 255, 196);
 }
 /*НОВОЕ ОКНО*/
