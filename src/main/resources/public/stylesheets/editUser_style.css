@@ -17,15 +17,14 @@ label, input {
     text-align: left;
 }
 
-/*������� ��� input, ������� ��, ��� ������� � shape.css �� ��������*/
-.info {
-    width: 100%;
-    margin: 0 0 15px 0;
-}
-
 .grayline {
     width: 70%;
     margin: 20px auto;
+}
+
+.info {
+    width: 100%;
+    margin: 0 0 15px 0;
 }
 
 .push {
@@ -34,80 +33,4 @@ label, input {
 }
 
 
-/*#link {
-    position: absolute;
-    margin: 5px 0 0 -30px ;
-    background-color: rgba(255, 255, 255, 0);
-    width: 300px;
-    height: 40px;
-}
 
-#table {
-	width: 550px;
-    margin: auto; 
-}
-
-#table td {
-    padding-bottom: 15px;
-}
-
-#yellowline {
-    width: 600px;
-    height: 4px;
-    border-radius: 40px;
-    background-color: #DFDFE0;
-    margin: 20px auto;
-}
-
-#table2 {
-	width: 550px;
-    margin: auto; 
-}
-
-#table2 td {
-    padding: 0 0 15px 10px;
-}
-
-#but {
-    border: none;
-    text-shadow: 1px 1px 2px #000;
-    border-radius: 5px;
-    padding: 10px;
-    font-size: 20px;
-    width: 200px;
-	margin-top: 15px;
-    background-color: #FBE94F;
-    font-weight: 700;
-    font-family: "Noto Serif", sans-serif;
-    color: #fff;
-}
-#but:hover {
-    background-color: rgb(255, 255, 0);
-}
-#ton {
-    border: none;
-    text-shadow: 1px 1px 2px #000;
-    border-radius: 5px;
-    padding: 10px;
-    font-size: 20px;
-    width: 270px;
-	margin-top: 15px;
-    background-color: #FBE94F;
-    font-weight: 700;
-    font-family: "Noto Serif", sans-serif;
-    color: #fff;
-}
-#ton:hover {
-    background-color: rgb(255, 255, 0);
-}
-
-.one {
-    width: 230px;
-    height: 20px;
-    border-radius: 5px;
-    border: thin solid lightgray;
-    background-color: #fff;
-}
-.one:hover {
-    background: rgb(248, 255, 255);
-}*/
