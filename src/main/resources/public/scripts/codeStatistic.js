@@ -9,6 +9,7 @@ window.onload = function () {
          if (request.readyState == 4 && request.status == 200) {
              var statisticArr = JSON.parse(request.responseText);
          }
+         console.log(statisticArr);
          
          showRegMonthChart(statisticArr);
          
@@ -32,6 +33,8 @@ window.onload = function () {
                  showGenderAgeChart(statisticArr, height, width);
              } else if (stringId == "chart_div_know_from") {
                  showKnowFromChart(statisticArr, height, width);
+             } else if (stringId == "chart_div_attendance") {
+                 showAttendanceChart(statisticArr, height, width);
              }
          };
 
@@ -55,6 +58,9 @@ window.onload = function () {
              } else if (stringId == "knowFrom") {
                  showKnowFromChart(statisticArr, height, width);
                  $("#chart_div_know_from").show(350);
+             } else if (stringId == "attendance") {
+                 showAttendanceChart(statisticArr, height, width);
+                 $("#chart_div_attendance").show(350);
              }
          }
      };
@@ -97,7 +103,8 @@ function showRegMonthChart(statisticArr, height, width) {
             height: height,
             title: 'Дата регистрации',
             hAxis: {title: 'Дата',  titleTextStyle: {color: '#333'}},
-            vAxis: {minValue: 0}
+            vAxis: {minValue: 0},
+            legend: {position: 'top'}
         };
 
         var chart = new google.visualization.AreaChart(document.getElementById('chart_div_reg_month'));
@@ -114,14 +121,7 @@ function showTotalPeopleChart(statisticArr, height, width) {
 
     function drawBasic() {
 
-        var data = google.visualization.arrayToDataTable(
-            totalPeople
-            /*[
-             ['', '', {role: "style"}],
-             ['Men', 175, '#7CD9FF'],
-             ['Women', 80, '#FF4BED'],
-             ['Total', 255, '#ffff00']
-             ]*/);
+        var data = google.visualization.arrayToDataTable(totalPeople);
 
         var options = {
             title: 'Amount of members',
@@ -244,6 +244,29 @@ function showKnowFromChart(statisticArr, height, width) {
     }
 }
 
+function showAttendanceChart(statisticArr, height, width) {
+    var attendance = makeDataArr(statisticArr.service.attendance);
+    attendance.sort(compareElementsByName);
+    attendance.unshift(['Дата', 'Количество посетителей']);
+
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable(attendance);
+
+        var options = {
+            width: width,
+            height: height,
+            title: "Посещаемость",
+            hAxis: {title: 'Дата',  titleTextStyle: {color: '#333'}},
+            vAxis: {minValue: 0},
+            legend: {position: 'top'}
+        };
+
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div_attendance'));
+        chart.draw(data, options);
+    }
+}
+
 function getOffsetParameters (parameter) {
     var chartsDivs = getAllChartsDivs();
     for (var i = 0; i < chartsDivs.length; i++) {
@@ -260,6 +283,7 @@ function getAllChartsDivs () {
     chartsDivs.push(document.getElementById("chart_div_pop_subscr"));
     chartsDivs.push(document.getElementById("chart_div_gender_age"));
     chartsDivs.push(document.getElementById("chart_div_know_from"));
+    chartsDivs.push(document.getElementById("chart_div_attendance"));
     return chartsDivs;
     //сделать универсальной
 }
