@@ -23,14 +23,18 @@ window.onload = function () {
     var errorBuy = document.getElementById("errorMessage");
 
     function showBuyForm () {
-        var today = new Date();
-        var date;
+        var today = new Date(),
+            date;
+        if (today.getDate() < 10) {
+            date = '0' + today.getDate()
+        }
         if (today.getMonth()<9) {
-            date = today.getFullYear() + "-0" + (today.getMonth() + 1) + "-" + today.getDate();
+            date = today.getFullYear() + "-0" + (today.getMonth() + 1) + "-" + date;
         } else {
-            date = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+            date = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + date;
         }
         dateFrom.value = date;
+        dateFrom.setAttribute('type', 'date');
         buyAbonForm.removeAttribute("class");
         hideForm.removeAttribute("class");
     }
