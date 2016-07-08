@@ -51,11 +51,13 @@ window.onload = function () {
                  $("#chart_div_total_people").show(350);
              } else if (stringId == "popSubscr") {
                  showPopSubscrChart(statisticArr, height, width);
+                 showPopSubscrChart(statisticArr, height, width);
                  $("#chart_div_pop_subscr").show(350);
              } else if (stringId == "genderAge") {
                  showGenderAgeChart(statisticArr, height, width);
                  $("#chart_div_gender_age").show(350);
              } else if (stringId == "knowFrom") {
+                 showKnowFromChart(statisticArr, height, width);
                  showKnowFromChart(statisticArr, height, width);
                  $("#chart_div_know_from").show(350);
              } else if (stringId == "attendance") {
@@ -99,6 +101,7 @@ function showRegMonthChart(statisticArr, height, width) {
         var data = google.visualization.arrayToDataTable(regMonth);
 
         var options = {
+            backgroundColor: '#f7f7f5',
             width: width,
             height: height,
             title: 'Дата регистрации',
@@ -114,8 +117,22 @@ function showRegMonthChart(statisticArr, height, width) {
 
 function showTotalPeopleChart(statisticArr, height, width) {
     var totalPeople = makeDataArr(statisticArr.client.totalPeoples);
+    for (var i = 0; i < totalPeople.length; i++) {
+        if (totalPeople[i][0] == 'all') {
+            totalPeople[i][0] = 'Всего посетителей';
+            totalPeople[i].push('#C044F7');
+        }
+        if (totalPeople[i][0] == 'м') {
+            totalPeople[i][0] = 'Мужчины';
+            totalPeople[i].push('#2BA2E0');
+        }
+        if (totalPeople[i][0] == 'ж') {
+            totalPeople[i][0] = 'Женщины';
+            totalPeople[i].push('#E05EB3');
+        }
+    }
     totalPeople.sort(compareElementsByName);
-    totalPeople.unshift(['', '']);
+    totalPeople.unshift(['', '', {role: 'style'}]);
 
     google.charts.setOnLoadCallback(drawBasic);
 
@@ -124,10 +141,11 @@ function showTotalPeopleChart(statisticArr, height, width) {
         var data = google.visualization.arrayToDataTable(totalPeople);
 
         var options = {
-            title: 'Amount of members',
+            backgroundColor: '#f7f7f5',
+            title: 'Количество уникальных посетителей',
             chartArea: {width: '50%'},
             hAxis: {
-                title: 'Number of members',
+                title: 'Количество',
                 minValue: 0
             },
             vAxis: {
@@ -147,11 +165,7 @@ function showTotalPeopleChart(statisticArr, height, width) {
 function showPopSubscrChart(statisticArr, height, width) {
     var popSubscr = makeDataArr(statisticArr.subscription.popSubscr);
     popSubscr.sort(compareElementsByValue);
-    for (var i = 0; i < popSubscr.length; i++) {
-        popSubscr[i].reverse();
-        popSubscr[i].unshift('');
-    }
-    popSubscr.unshift(['', '', {role: 'annotation'}]);
+    popSubscr.unshift(['Вид абонемента', 'Количество абонементов']);
 
     google.charts.setOnLoadCallback(drawBasic);
 
@@ -161,7 +175,11 @@ function showPopSubscrChart(statisticArr, height, width) {
 
         var options = {
             title: 'Популярность абонементов',
-            chartArea: {width: '50%'},
+            backgroundColor: '#f7f7f5',
+            chartArea: {
+                width: '50%',
+                left: 255
+            },
             hAxis: {
                 title: 'Количество абонементов',
                 minValue: 0
@@ -189,9 +207,8 @@ function showGenderAgeChart(statisticArr, height, width) {
         var data = google.visualization.arrayToDataTable(genderAgeArr);
 
         var options = {
-            chart: {
-                title: 'Пол и возраст клиентов'
-            },
+            backgroundColor: '#f7f7f5',
+            title: 'Пол и возраст клиентов',
             bars: 'vertical',
             vAxis: {format: 'decimal'},
             height: height,
@@ -211,11 +228,9 @@ function showKnowFromChart(statisticArr, height, width) {
         if (knowFrom[i][0] === "") {
             knowFrom[i][0] = 'не указали';
         }
-        knowFrom[i].reverse();
-        knowFrom[i].unshift("");
     }
     knowFrom.sort(compareElementsByValue);
-    knowFrom.unshift(['Источник информации', 'Количество', {role: 'annotation'}]);
+    knowFrom.unshift(['Источник информации', 'Количество']);
 
     google.charts.setOnLoadCallback(drawBasic);
 
@@ -224,10 +239,11 @@ function showKnowFromChart(statisticArr, height, width) {
         var data = google.visualization.arrayToDataTable(knowFrom);
 
         var options = {
-            title: 'Популярность абонементов',
+            backgroundColor: '#f7f7f5',
+            title: 'Популярность рекламного источника',
             chartArea: {width: '50%'},
             hAxis: {
-                title: 'Количество абонементов',
+                title: 'Количество уникальных посетителей',
                 minValue: 0
             },
             vAxis: {
@@ -254,6 +270,7 @@ function showAttendanceChart(statisticArr, height, width) {
         var data = google.visualization.arrayToDataTable(attendance);
 
         var options = {
+            backgroundColor: '#f7f7f5',
             width: width,
             height: height,
             title: "Посещаемость",
@@ -306,7 +323,7 @@ function makeDataArrForGenderAge (statisticArr) {
         menAge = [],
         womenAge = [],
         genderAgeArr = [
-            ['Age', 'Men', 'Women'],
+            ['Возраст', 'Мужчины', 'Женщины'],
             ['<18'],
             ['18 - 21'],
             ['21-24'],
