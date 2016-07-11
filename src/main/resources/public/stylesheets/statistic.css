@@ -5,7 +5,7 @@
     width: 300px;
     height: 40px;
 }
-.contain {
+#chart_div_know_from {
     overflow: auto;
 }
 .charts {

@@ -9,7 +9,6 @@ window.onload = function () {
          if (request.readyState == 4 && request.status == 200) {
              var statisticArr = JSON.parse(request.responseText);
          }
-         console.log(statisticArr);
          
          showRegMonthChart(statisticArr);
          
@@ -32,7 +31,7 @@ window.onload = function () {
              } else if (stringId == "chart_div_gender_age") {
                  showGenderAgeChart(statisticArr, height, width);
              } else if (stringId == "chart_div_know_from") {
-                 showKnowFromChart(statisticArr, height, width);
+                 showKnowFromChart(statisticArr, width);
              } else if (stringId == "chart_div_attendance") {
                  showAttendanceChart(statisticArr, height, width);
              }
@@ -51,14 +50,12 @@ window.onload = function () {
                  $("#chart_div_total_people").show(350);
              } else if (stringId == "popSubscr") {
                  showPopSubscrChart(statisticArr, height, width);
-                 showPopSubscrChart(statisticArr, height, width);
                  $("#chart_div_pop_subscr").show(350);
              } else if (stringId == "genderAge") {
                  showGenderAgeChart(statisticArr, height, width);
                  $("#chart_div_gender_age").show(350);
              } else if (stringId == "knowFrom") {
-                 showKnowFromChart(statisticArr, height, width);
-                 showKnowFromChart(statisticArr, height, width);
+                 showKnowFromChart(statisticArr, width);
                  $("#chart_div_know_from").show(350);
              } else if (stringId == "attendance") {
                  showAttendanceChart(statisticArr, height, width);
@@ -222,7 +219,7 @@ function showGenderAgeChart(statisticArr, height, width) {
     }
 }
 
-function showKnowFromChart(statisticArr, height, width) {
+function showKnowFromChart(statisticArr, width) {
     var knowFrom = makeDataArr(statisticArr.client.knowFrom);
     for (var i = 0; i < knowFrom.length; i++) {
         if (knowFrom[i][0] === "") {
@@ -230,6 +227,10 @@ function showKnowFromChart(statisticArr, height, width) {
         }
     }
     knowFrom.sort(compareElementsByValue);
+
+    var height = 50 * knowFrom.length + 100;
+    width = width - 20 + '';
+
     knowFrom.unshift(['Источник информации', 'Количество']);
 
     google.charts.setOnLoadCallback(drawBasic);
@@ -241,7 +242,10 @@ function showKnowFromChart(statisticArr, height, width) {
         var options = {
             backgroundColor: '#f7f7f5',
             title: 'Популярность рекламного источника',
-            chartArea: {width: '50%'},
+            chartArea: {
+                width: '80%',
+                top: '70'
+            },
             hAxis: {
                 title: 'Количество уникальных посетителей',
                 minValue: 0
@@ -254,7 +258,7 @@ function showKnowFromChart(statisticArr, height, width) {
             legend: { position: "none" }
         };
 
-        var chart = new google.visualization.BarChart(document.getElementById('chart_div_know_from'));
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div_overflow'));
 
         chart.draw(data, options);
     }
