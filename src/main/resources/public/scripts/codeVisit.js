@@ -26,9 +26,11 @@ window.onload = function () {
         var today = new Date(),
             date;
         if (today.getDate() < 10) {
-            date = '0' + today.getDate()
+            date = '0' + today.getDate();
+        } else {
+            date = '' + today.getDate();
         }
-        if (today.getMonth()<9) {
+        if (today.getMonth() < 9) {
             date = today.getFullYear() + "-0" + (today.getMonth() + 1) + "-" + date;
         } else {
             date = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + date;

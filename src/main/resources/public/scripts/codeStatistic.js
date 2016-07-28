@@ -90,7 +90,7 @@ window.onload = function () {
 
 function showRegMonthChart(statisticArr, height, width) {
     var regMonth = makeDataArr(statisticArr.client.regMonth);
-    regMonth.sort(compareElementsByName);
+    regMonth.sort(compareElementsByDate);
     regMonth.unshift(['Дата', 'Количество зарегистрировавшихся']);
 
     google.charts.setOnLoadCallback(drawChart);
@@ -266,7 +266,7 @@ function showKnowFromChart(statisticArr, width) {
 
 function showAttendanceChart(statisticArr, height, width) {
     var attendance = makeDataArr(statisticArr.service.attendance);
-    attendance.sort(compareElementsByName);
+    attendance.sort(compareElementsByDate);
     attendance.unshift(['Дата', 'Количество посетителей']);
 
     google.charts.setOnLoadCallback(drawChart);
@@ -373,6 +373,22 @@ function getIdOfShowedChart () {
 function compareElementsByName (a, b) {
     if (a[0] > b[0]) return 1;
     if (a[0] < b[0]) return -1;
+}
+
+function compareElementsByDate (a, b) {
+    var arrA = a[0].split('-'),
+        arrB = b[0].split('-');
+    if (arrA[0] > arrB[0]) {
+        return 1;
+    } else if (arrB[0] > arrA[0]) {
+        return -1;
+    } else {
+        if (arrA[1] > arrB[1]) {
+            return 1;
+        } else {
+            return -1;
+        }
+    }
 }
 
 function compareElementsByValue (a, b) {
