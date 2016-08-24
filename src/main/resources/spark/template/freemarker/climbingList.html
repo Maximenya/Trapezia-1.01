@@ -33,10 +33,10 @@
         <div class="grayline"></div>
         <div class="search-container">
             <div class="ui-widget">
-                <input type="text" class="info" id="search" name="search" class="search" placeholder="Введите ФИО"/>
+                <input type="text" class="info" id="search" name="search" class="search" placeholder="Введите ФИО" onkeyup="if(this.value.length > 0) document.getElementById('button').disabled = false; else document.getElementById('button').disabled = true;"/>
             </div>
         </div>
-        <button id="button" class="push" type="button">Оформить</button>
+        <button id="button" class="push" type="button" disabled>Оформить</button>
         <button id="button2" class="push" type="button" onclick="javascript:window.location='/addUser'">Зарегистрировать</button>
         <button class="push" type="button" onclick="javascript:window.location='/GetStatisticController'">Статистика</button>
     </div>
