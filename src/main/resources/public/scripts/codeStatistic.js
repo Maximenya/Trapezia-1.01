@@ -90,6 +90,7 @@ window.onload = function () {
 
 function showRegMonthChart(statisticArr, height, width) {
     var regMonth = makeDataArr(statisticArr.client.regMonth);
+    console.log(regMonth);
     regMonth.sort(compareElementsByDate);
     regMonth.unshift(['Дата', 'Количество зарегистрировавшихся']);
 
@@ -243,8 +244,9 @@ function showKnowFromChart(statisticArr, width) {
             backgroundColor: '#f7f7f5',
             title: 'Популярность рекламного источника',
             chartArea: {
-                width: '80%',
-                top: '70'
+                width: '60%',
+                top: '70',
+                left: 200
             },
             hAxis: {
                 title: 'Количество уникальных посетителей',
@@ -378,12 +380,12 @@ function compareElementsByName (a, b) {
 function compareElementsByDate (a, b) {
     var arrA = a[0].split('-'),
         arrB = b[0].split('-');
-    if (arrA[0] > arrB[0]) {
+    if (+arrA[0] > +arrB[0]) {
         return 1;
-    } else if (arrB[0] > arrA[0]) {
+    } else if (+arrB[0] > +arrA[0]) {
         return -1;
     } else {
-        if (arrA[1] > arrB[1]) {
+        if (+arrA[1] > +arrB[1]) {
             return 1;
         } else {
             return -1;
