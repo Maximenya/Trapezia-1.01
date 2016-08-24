@@ -90,7 +90,6 @@ window.onload = function () {
 
 function showRegMonthChart(statisticArr, height, width) {
     var regMonth = makeDataArr(statisticArr.client.regMonth);
-    console.log(regMonth);
     regMonth.sort(compareElementsByDate);
     regMonth.unshift(['Дата', 'Количество зарегистрировавшихся']);
 
