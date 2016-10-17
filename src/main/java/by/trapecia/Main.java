@@ -249,7 +249,7 @@ public class Main {
             client.put("regMonth", statisticDao.regMonth());
 
             subscription.put("popSubscr", statisticDao.popSubscr());
-            subscription.put("regSubscr", statisticDao.regSubscr());
+            /*subscription.put("regSubscr", statisticDao.regSubscr());*/
 
             service.put("attendance", statisticDao.attendance());
 

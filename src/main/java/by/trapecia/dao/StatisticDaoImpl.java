@@ -194,8 +194,8 @@ public class StatisticDaoImpl implements StatisticDao {
             connection = cp.getConnection();
             String selectStatement = "SELECT MONTH(registration_date) AS Month, YEAR(registration_date) AS Year, COUNT(*) AS `num` \n" +
                     "FROM client\n" +
-                    "WHERE registration_date LIKE '2%'\n" +
-                    "GROUP BY MONTH(registration_date) + '.' + YEAR(registration_date)";
+                    "WHERE YEAR(registration_date) LIKE '20%'\n" +
+                    "GROUP BY MONTH(registration_date) , YEAR(registration_date)";
             PreparedStatement ps = connection.prepareStatement(selectStatement);
             result = ps.executeQuery();
             while (result.next()) {
@@ -248,7 +248,7 @@ public class StatisticDaoImpl implements StatisticDao {
         return popSubscr;
     }
 
-    @Override
+   /* @Override
     public JSONObject regSubscr() throws Exception {
 
         JSONObject regSubscr,T21,T22,T23,T24,T25,T26;
@@ -312,7 +312,7 @@ public class StatisticDaoImpl implements StatisticDao {
             }
         }
         return regSubscr;
-    }
+    }*/
 
     @Override
     public JSONObject attendance() throws Exception {
@@ -324,8 +324,8 @@ public class StatisticDaoImpl implements StatisticDao {
         try {
             connection = cp.getConnection();
             String selectStatement = "SELECT MONTH(sale_time) AS Month, YEAR(sale_time) AS Year, COUNT(*) AS `num` \n" +
-                    "FROM service WHERE sale_time LIKE '2%'\n" +
-                    "GROUP BY MONTH(sale_time) + '.' + YEAR(sale_time)";
+                    "FROM service WHERE YEAR(sale_time) LIKE '20%'\n" +
+                    "GROUP BY MONTH(sale_time) , YEAR(sale_time)";
             PreparedStatement ps = connection.prepareStatement(selectStatement);
             result = ps.executeQuery();
             while (result.next()) {
