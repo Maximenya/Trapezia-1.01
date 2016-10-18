@@ -59,6 +59,9 @@
                 <button id="pro" class="push" type="button"
                         onclick="window.location='/editUser?clientId=${client.clientId?c}'">Профиль
                 </button>
+                <#if parentAgreed == 1>
+                <img id="checkIcon" src="stylesheets/img/checkIcon.png" alt="Согласие родителей">
+            </#if>
             </div>
         </div>
         <div class="grayline"></div>

@@ -62,6 +62,14 @@
                    <label for="registrationDate">Дата регистрации</label>
                    <input type="date" class="info" id="registrationDate" name="registrationDate" value="${client.registrationDate}"/>
                </div>
+               <div class="row">
+                   <label for="parentAgreed">Согласие родителей</label>
+                   <select name="parentAgreed" class="info" id="parentAgreed">
+
+                       <option value="0">Нет</option>
+                       <option value="1" <#if parentAgreed == 1>selected</#if> >Да</option>
+                   </select>
+               </div>
            </div>
            <button id="but" class="push" type="submit">Применить</button>
        </form>

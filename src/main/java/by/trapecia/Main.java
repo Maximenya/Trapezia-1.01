@@ -81,6 +81,7 @@ public class Main {
             client.document = request.queryParams("document");
             client.sex = request.queryParams("sex");
             client.knowFrom = request.queryParams("knowFrom");
+            client.parentAgreed = Integer.parseInt(request.queryParams("parentAgreed"));
             client.birthDate = request.queryParams("birthDate");
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
             Date date = new Date();
@@ -96,6 +97,7 @@ public class Main {
                 response.status(200);
                 response.type("text/html");
                 Map<String, Object> attributes =  new HashMap<>();
+                attributes.put("parentAgreed", client.parentAgreed);
                 attributes.put("client", client);
                 attributes.put("subscriptions", subscriptions);
             return new FreeMarkerEngine().render(new ModelAndView(attributes, "visit.html"));
@@ -178,6 +180,7 @@ public class Main {
             response.status(200);
             response.type("text/html");
             Map<String, Object> attributes =  new HashMap<>();
+            attributes.put("parentAgreed", client.parentAgreed);
             attributes.put("client", client);
             attributes.put("subscriptions", subscriptions);
             return new FreeMarkerEngine().render(new ModelAndView(attributes, "editUser.html"));
@@ -196,6 +199,7 @@ public class Main {
             client.registrationDate = request.queryParams("registrationDate");
             client.sex = request.queryParams("sex");
             client.knowFrom = request.queryParams("knowFrom");
+            client.parentAgreed = Integer.parseInt(request.queryParams("parentAgreed"));
             clientDao.update(client);
             response.redirect("/climbingList");
             return 1;

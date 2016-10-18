@@ -148,3 +148,13 @@ caption {
     color: #CD5555;
     text-align: center;
 }
+
+#checkIcon {
+    margin-top: 15px;
+    position: absolute;
+    margin-bottom: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 43px;
+    height: 43px;
+}

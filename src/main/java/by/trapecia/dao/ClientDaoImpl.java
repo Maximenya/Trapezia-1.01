@@ -4,9 +4,7 @@ import by.trapecia.Main;
 import by.trapecia.model.Client;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -33,7 +31,7 @@ public class ClientDaoImpl implements ClientDao {
         try {
             connection = cp.getConnection();
             ps = connection.prepareStatement(
-                    "INSERT INTO client VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+                    "INSERT INTO client VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, client.firstName);
             ps.setString(2, client.middleName);
             ps.setString(3, client.lastName);
@@ -48,6 +46,7 @@ public class ClientDaoImpl implements ClientDao {
             ps.setString(8, client.registrationDate);
             ps.setString(9, client.sex);
             ps.setString(10, client.knowFrom);
+            ps.setInt(11, client.parentAgreed);
             ps.executeUpdate();
             result = ps.getGeneratedKeys();
             result.next();
@@ -89,6 +88,7 @@ public class ClientDaoImpl implements ClientDao {
                 client.registrationDate = result.getString("registration_date");
                 client.sex = result.getString("sex");
                 client.knowFrom = result.getString("know_from");
+                client.parentAgreed = result.getInt("parentAgreed");
             }
 
         } catch (Exception e) {
@@ -110,7 +110,7 @@ public class ClientDaoImpl implements ClientDao {
             connection = cp.getConnection();
             ps = connection.prepareStatement(
                     "UPDATE client SET  first_name = ?, middle_name = ?, last_name = ?, email = ?, phone = ?, document = ?," +
-                            " birth_date = ?, registration_date = ?, sex = ?, know_from = ? WHERE client_id = ?", Statement.RETURN_GENERATED_KEYS);
+                            " birth_date = ?, registration_date = ?, sex = ?, know_from = ?, parentAgreed = ? WHERE client_id = ?", Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, client.firstName);
             ps.setString(2, client.middleName);
             ps.setString(3, client.lastName);
@@ -121,7 +121,8 @@ public class ClientDaoImpl implements ClientDao {
             ps.setString(8, client.registrationDate);
             ps.setString(9, client.sex);
             ps.setString(10, client.knowFrom);
-            ps.setInt(11, client.clientId);
+            ps.setInt(11, client.parentAgreed);
+            ps.setInt(12, client.clientId);
             System.out.println(client.clientId);
             ps.executeUpdate();
             result = ps.getGeneratedKeys();
@@ -187,6 +188,7 @@ public class ClientDaoImpl implements ClientDao {
                 client.registrationDate = result.getString("registration_date");
                 client.sex = result.getString("sex");
                 client.knowFrom = result.getString("know_from");
+                client.parentAgreed = result.getInt("parentAgreed");
 
                 clients.add(client);
             }

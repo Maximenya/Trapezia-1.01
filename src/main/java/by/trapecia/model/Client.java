@@ -1,10 +1,5 @@
 package by.trapecia.model;
 
-import java.sql.Time;
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.LinkedList;
-
 public class Client {
     public int clientId;
     public String phone;
@@ -17,6 +12,7 @@ public class Client {
     public String registrationDate;
     public String sex;
     public String knowFrom;
+    public int parentAgreed;
 
     public int getClientId() {
         return clientId;
